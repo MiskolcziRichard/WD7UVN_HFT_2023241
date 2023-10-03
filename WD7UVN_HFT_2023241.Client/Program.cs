@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WD7UVN_HFT_2023241
+namespace WD7UVN_HFT_2023241.Client
 {
     class Program
     {

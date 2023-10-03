@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/typo/Projects/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241.csproj",
-      "projectName": "WD7UVN_HFT_2023241",
-      "projectPath": "/home/typo/Projects/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241.csproj",
+      "projectUniqueName": "/home/typo/Projects/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241.Client/WD7UVN_HFT_2023241.Client.csproj",
+      "projectName": "WD7UVN_HFT_2023241.Client",
+      "projectPath": "/home/typo/Projects/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241.Client/WD7UVN_HFT_2023241.Client.csproj",
       "packagesPath": "/home/typo/.nuget/packages/",
-      "outputPath": "/home/typo/Projects/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241/obj/",
+      "outputPath": "/home/typo/Projects/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241.Client/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/typo/.nuget/NuGet/NuGet.Config"

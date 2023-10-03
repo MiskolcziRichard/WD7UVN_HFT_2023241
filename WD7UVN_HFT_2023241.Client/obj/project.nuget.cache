@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "XZaBbvnTYfYmHJ5Y5WzHPXIDZUEqPIJj5mshCnm85i3emzbQqHMmYKhW7JdJ/10r/McZZK11jmHwKHXPaKBqoQ==",
+  "success": true,
+  "projectFilePath": "/home/typo/Projects/WD7UVN_HFT_2023241/WD7UVN_HFT_2023241.Client/WD7UVN_HFT_2023241.Client.csproj",
+  "expectedPackageFiles": [
+    "/home/typo/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
