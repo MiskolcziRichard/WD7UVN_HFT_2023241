@@ -10,6 +10,19 @@ namespace WD7UVN_HFT_2023241.Logic
         public ICRUD CRUDOperations { get; set; }
 
         //additional, non-CRUD operations
+        public IQueryable<Employee> WhoWorksInMaintainerTeam(int maintainerTeamId);
+        public IQueryable<Employee> GetSubordinates(int managerId);
+        public IQueryable<Customer> WhoUsesService(int serviceId);
+    }
+
+    public class LogicServices : ILogicServices
+    {
+        public ICRUD CRUDOperations { get; set; }
+
+        public LogicServices(ICRUD CRUDOperations)
+        {
+            this.CRUDOperations = CRUDOperations;
+        }
 
         public IQueryable<Employee> WhoWorksInMaintainerTeam(int maintainerTeamId)
         {
@@ -30,16 +43,6 @@ namespace WD7UVN_HFT_2023241.Logic
             return CRUDOperations
             .ReadAllCustomers()
             .Where(c => c.SERVICE_ID == serviceId);
-        }
-    }
-
-    public class LogicServices : ILogicServices
-    {
-        public ICRUD CRUDOperations { get; set; }
-
-        public LogicServices(ICRUD CRUDOperations)
-        {
-            this.CRUDOperations = CRUDOperations;
         }
     }
 }
