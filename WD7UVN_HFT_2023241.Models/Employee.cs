@@ -22,6 +22,6 @@ namespace WD7UVN_HFT_2023241.Models
         [ForeignKey(nameof(MaintainerTeam))]
         public int MAINTAINER_ID { get; set; }
         [ForeignKey(nameof(Employee))]
-        public int MANAGER { get; set; }
+        public int MANAGER_ID { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace WD7UVN_HFT_2023241.Models
         public int ID { get; set; }
         [ForeignKey(nameof(MaintainerTeam))]
         [Required]
-        public int MAINTAINER { get; set; }
+        public int MAINTAINER_ID { get; set; }
         [Required]
         public string NAME { get; set; }
         public int VERSION { get; set; }
