@@ -1,5 +1,5 @@
-using WD7UVN_HFT_2023241.Logic;
 using Microsoft.AspNetCore.Mvc;
+using WD7UVN_HFT_2023241.Logic;
 
 namespace WD7UVN_HFT_2023241.Endpoint
 {
@@ -7,6 +7,13 @@ namespace WD7UVN_HFT_2023241.Endpoint
     [Route("api/[controller]")]
     public class DatabaseController : ControllerBase
     {
+        public ILogicServices LogicServices { get; set; }
+
+        public DatabaseController(ILogicServices LogicServices)
+        {
+            this.LogicServices = LogicServices;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
