@@ -24,6 +24,45 @@ namespace WD7UVN_HFT_2023241.Repository
             {
                 optionsBuilder
                         .UseInMemoryDatabase("company");
+
+                //loading test values
+                Customers.Add(new Customer{
+                    NAME = "Szemed Fénye Optika Kft.",
+                    ID = 1,
+                    SERVICE_ID = 1
+                });
+
+                Services.Add(new Service{
+                    NAME = "Microsoft Exchange",
+                    ID = 1,
+                    MAINTAINER = 1,
+                });
+
+                Maintainers.Add(new MaintainerTeam{
+                    ID = 1,
+                    NAME = "Microsoft Team",
+                    LEADER_EMPLOYEE_ID = 2
+                });
+
+                Employees.Add(new Employee{
+                    ID = 1,
+                    NAME = "Gipsz Jakab",
+                    MANAGER = 2,
+                    MAINTAINER_ID = 1
+                });
+
+                Employees.Add(new Employee{
+                    NAME = "Székely Csaba",
+                    ID = 3,
+                    MANAGER = 2,
+                    MAINTAINER_ID = 1
+                });
+
+                Employees.Add(new Employee{
+                    NAME = "Nagy Krisztina",
+                    ID = 2,
+                    MAINTAINER_ID = 1
+                });
             }
         }
 
