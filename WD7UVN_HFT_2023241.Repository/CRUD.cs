@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using WD7UVN_HFT_2023241.Models;
 using WD7UVN_HFT_2023241.Repository;
@@ -16,6 +17,11 @@ namespace WD7UVN_HFT_2023241.Repository
         public static Customer ReadCustomer(int customerId)
         {
             return Database.Context.Customers.Find(customerId);
+        }
+
+        public IQueryable<Customer> ReadAllCustomers()
+        {
+            return Database.Context.Customers.AsQueryable();
         }
 
         public static void UpdateCustomer(Customer updatedCustomer)
@@ -52,6 +58,11 @@ namespace WD7UVN_HFT_2023241.Repository
             return Database.Context.Maintainers.Find(maintainerTeamId);
         }
 
+        public IQueryable<MaintainerTeam> ReadAllMaintainerTeams()
+        {
+            return Database.Context.Maintainers.AsQueryable();
+        }
+
         public static void UpdateMaintainerTeam(MaintainerTeam updatedMaintainerTeam)
         {
             MaintainerTeam existingMaintainerTeam = Database.Context.Maintainers.Find(updatedMaintainerTeam.ID);
@@ -86,6 +97,11 @@ namespace WD7UVN_HFT_2023241.Repository
             return Database.Context.Services.Find(serviceId);
         }
 
+        public IQueryable<Service> ReadAllServices()
+        {
+            return Database.Context.Services.AsQueryable();
+        }
+
         public static void UpdateService(Service updatedService)
         {
             Service existingService = Database.Context.Services.Find(updatedService.ID);
@@ -118,6 +134,11 @@ namespace WD7UVN_HFT_2023241.Repository
         public static Employee ReadEmployee(int employeeId)
         {
             return Database.Context.Employees.Find(employeeId);
+        }
+
+        public IQueryable<Employee> ReadAllEmployees()
+        {
+            return Database.Context.Employees.AsQueryable();
         }
 
         public static void UpdateEmployee(Employee updatedEmployee)
