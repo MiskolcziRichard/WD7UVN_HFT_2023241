@@ -6,15 +6,26 @@ using WD7UVN_HFT_2023241.Repository;
 
 namespace WD7UVN_HFT_2023241.Repository
 {
-    public class CustomerRepository
+    public interface ICRUD : ICustomerRepository, IEmployeeRepository, IMaintainerTeamRepository, IServiceRepository { }
+
+    public interface ICustomerRepository
     {
-        public static void CreateCustomer(Customer customer)
+        public void CreateCustomer(Customer customer);
+        public Customer ReadCustomer(int customerId);
+        public IQueryable<Customer> ReadAllCustomers();
+        public void UpdateCustomer(Customer updatedCustomer);
+        public void DeleteCustomer(int customerId);
+    }
+
+    public class CustomerRepository : ICustomerRepository
+    {
+        public void CreateCustomer(Customer customer)
         {
             Database.Context.Customers.Add(customer);
             Database.Context.SaveChanges();
         }
 
-        public static Customer ReadCustomer(int customerId)
+        public Customer ReadCustomer(int customerId)
         {
             return Database.Context.Customers.Find(customerId);
         }
@@ -24,7 +35,7 @@ namespace WD7UVN_HFT_2023241.Repository
             return Database.Context.Customers.AsQueryable();
         }
 
-        public static void UpdateCustomer(Customer updatedCustomer)
+        public void UpdateCustomer(Customer updatedCustomer)
         {
             Customer existingCustomer = Database.Context.Customers.Find(updatedCustomer.ID);
             if (existingCustomer != null)
@@ -34,7 +45,7 @@ namespace WD7UVN_HFT_2023241.Repository
             }
         }
 
-        public static void DeleteCustomer(int customerId)
+        public void DeleteCustomer(int customerId)
         {
             Customer customerToDelete = Database.Context.Customers.Find(customerId);
             if (customerToDelete != null)
@@ -45,15 +56,24 @@ namespace WD7UVN_HFT_2023241.Repository
         }
     }    
 
-    public class MaintainerTeamRepository
+    public interface IMaintainerTeamRepository
     {
-        public static void CreateMaintainerTeam(MaintainerTeam maintainerTeam)
+        public void CreateMaintainerTeam(MaintainerTeam maintainerTeam);
+        public MaintainerTeam ReadMaintainerTeam(int maintainerTeamId);
+        public IQueryable<MaintainerTeam> ReadAllMaintainerTeams();
+        public void UpdateMaintainerTeam(MaintainerTeam updatedMaintainerTeam);
+        public void DeleteMaintainerTeam(int maintainerTeamId);
+    }
+
+    public class MaintainerTeamRepository : IMaintainerTeamRepository
+    {
+        public void CreateMaintainerTeam(MaintainerTeam maintainerTeam)
         {
             Database.Context.Maintainers.Add(maintainerTeam);
             Database.Context.SaveChanges();
         }
 
-        public static MaintainerTeam ReadMaintainerTeam(int maintainerTeamId)
+        public MaintainerTeam ReadMaintainerTeam(int maintainerTeamId)
         {
             return Database.Context.Maintainers.Find(maintainerTeamId);
         }
@@ -63,7 +83,7 @@ namespace WD7UVN_HFT_2023241.Repository
             return Database.Context.Maintainers.AsQueryable();
         }
 
-        public static void UpdateMaintainerTeam(MaintainerTeam updatedMaintainerTeam)
+        public void UpdateMaintainerTeam(MaintainerTeam updatedMaintainerTeam)
         {
             MaintainerTeam existingMaintainerTeam = Database.Context.Maintainers.Find(updatedMaintainerTeam.ID);
             if (existingMaintainerTeam != null)
@@ -73,7 +93,7 @@ namespace WD7UVN_HFT_2023241.Repository
             }
         }
 
-        public static void DeleteMaintainerTeam(int maintainerTeamId)
+        public void DeleteMaintainerTeam(int maintainerTeamId)
         {
             MaintainerTeam maintainerTeamToDelete = Database.Context.Maintainers.Find(maintainerTeamId);
             if (maintainerTeamToDelete != null)
@@ -84,15 +104,24 @@ namespace WD7UVN_HFT_2023241.Repository
         }
     }
 
-    public class ServiceRepository
+    public interface IServiceRepository
     {
-        public static void CreateService(Service service)
+        public void CreateService(Service service);
+        public Service ReadService(int serviceId);
+        public IQueryable<Service> ReadAllServices();
+        public void UpdateService(Service updatedService);
+        public void DeleteService(int serviceId);
+    }
+
+    public class ServiceRepository : IServiceRepository
+    {
+        public void CreateService(Service service)
         {
             Database.Context.Services.Add(service);
             Database.Context.SaveChanges();
         }
 
-        public static Service ReadService(int serviceId)
+        public Service ReadService(int serviceId)
         {
             return Database.Context.Services.Find(serviceId);
         }
@@ -102,7 +131,7 @@ namespace WD7UVN_HFT_2023241.Repository
             return Database.Context.Services.AsQueryable();
         }
 
-        public static void UpdateService(Service updatedService)
+        public void UpdateService(Service updatedService)
         {
             Service existingService = Database.Context.Services.Find(updatedService.ID);
             if (existingService != null)
@@ -112,7 +141,7 @@ namespace WD7UVN_HFT_2023241.Repository
             }
         }
 
-        public static void DeleteService(int serviceId)
+        public void DeleteService(int serviceId)
         {
             Service serviceToDelete = Database.Context.Services.Find(serviceId);
             if (serviceToDelete != null)
@@ -123,15 +152,24 @@ namespace WD7UVN_HFT_2023241.Repository
         }
     }
 
-    public class EmployeeRepository
+    public interface IEmployeeRepository
     {
-        public static void CreateEmployee(Employee employee)
+        public void CreateEmployee(Employee employee);
+        public Employee ReadEmployee(int employeeId);
+        public IQueryable<Employee> ReadAllEmployees();
+        public void UpdateEmployee(Employee updatedEmployee);
+        public void DeleteEmployee(int employeeId);
+    }
+
+    public class EmployeeRepository : IEmployeeRepository
+    {
+        public void CreateEmployee(Employee employee)
         {
             Database.Context.Employees.Add(employee);
             Database.Context.SaveChanges();
         }
 
-        public static Employee ReadEmployee(int employeeId)
+        public Employee ReadEmployee(int employeeId)
         {
             return Database.Context.Employees.Find(employeeId);
         }
@@ -141,7 +179,7 @@ namespace WD7UVN_HFT_2023241.Repository
             return Database.Context.Employees.AsQueryable();
         }
 
-        public static void UpdateEmployee(Employee updatedEmployee)
+        public void UpdateEmployee(Employee updatedEmployee)
         {
             Employee existingEmployee = Database.Context.Employees.Find(updatedEmployee.ID);
             if (existingEmployee != null)
@@ -151,7 +189,7 @@ namespace WD7UVN_HFT_2023241.Repository
             }
         }
 
-        public static void DeleteEmployee(int employeeId)
+        public void DeleteEmployee(int employeeId)
         {
             Employee employeeToDelete = Database.Context.Employees.Find(employeeId);
             if (employeeToDelete != null)

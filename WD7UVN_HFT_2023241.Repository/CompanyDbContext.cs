@@ -8,7 +8,7 @@ namespace WD7UVN_HFT_2023241.Repository
 {
     public static class Database
     {
-        public static CompanyDbContext Context { get; set; }
+        public static CompanyDbContext Context = new CompanyDbContext();
     }
     public class CompanyDbContext : DbContext
     {
@@ -42,6 +42,24 @@ namespace WD7UVN_HFT_2023241.Repository
                 .HasForeignKey(customer => customer.SERVICE_ID)
                 .OnDelete(DeleteBehavior.Cascade));
 
+            modelBuilder.Entity<Service>(service => service
+                .HasOne<MaintainerTeam>()
+                .WithMany()
+                .HasForeignKey(service => service.MAINTAINER_ID)
+                .OnDelete(DeleteBehavior.SetNull));
+
+            modelBuilder.Entity<MaintainerTeam>(team => team
+                .HasOne<Employee>()
+                .WithMany()
+                .HasForeignKey(team => team.LEADER_ID)
+                .OnDelete(DeleteBehavior.SetNull));
+
+            modelBuilder.Entity<Employee>(emp => emp
+                .HasOne<Employee>()
+                .WithMany()
+                .HasForeignKey(emp => emp.MANAGER_ID)
+                .OnDelete(DeleteBehavior.SetNull));
+
             //loading test values
             modelBuilder.Entity<Customer>().HasData(
                 new Customer{
@@ -54,27 +72,27 @@ namespace WD7UVN_HFT_2023241.Repository
                 new Service{
                 NAME = "Microsoft Exchange",
                 ID = 1,
-                MAINTAINER = 1}
+                MAINTAINER_ID = 1}
             );
 
             modelBuilder.Entity<MaintainerTeam>().HasData(
                 new MaintainerTeam{
                 ID = 1,
                 NAME = "Microsoft Team",
-                LEADER_EMPLOYEE_ID = 2}
+                LEADER_ID = 2}
             );
 
             modelBuilder.Entity<Employee>().HasData(
                 new Employee{
                 ID = 1,
                 NAME = "Gipsz Jakab",
-                MANAGER = 2,
+                MANAGER_ID = 2,
                 MAINTAINER_ID = 1},
                 
                 new Employee{
                 NAME = "Székely Csaba",
                 ID = 3,
-                MANAGER = 2,
+                MANAGER_ID = 2,
                 MAINTAINER_ID = 1},
 
                 new Employee{
