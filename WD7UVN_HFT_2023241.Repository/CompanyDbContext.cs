@@ -6,6 +6,10 @@ using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Repository
 {
+    public static class Database
+    {
+        public static CompanyDbContext Context { get; set; }
+    }
     public class CompanyDbContext : DbContext
     {
         //Tables
