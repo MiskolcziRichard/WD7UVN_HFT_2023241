@@ -1,7 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using WD7UVN_HFT_2023241.Repository;
 
 namespace WD7UVN_HFT_2023241.Endpoint
 {
@@ -10,7 +9,6 @@ namespace WD7UVN_HFT_2023241.Endpoint
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            Database.Context = new();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
