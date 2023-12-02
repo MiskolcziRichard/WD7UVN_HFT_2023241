@@ -17,7 +17,20 @@ namespace WD7UVN_HFT_2023241.Endpoint
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("This is a GET request.");
+			// Accessing individual query parameters
+			//string paramValue = HttpContext.Request.Query["tableName"];
+			
+			// Retrieving all query parameters
+			var queryParams = HttpContext.Request.Query;
+			
+			foreach (var param in queryParams)
+			{
+				string paramName = param.Key;
+				string paramVal = param.Value;
+
+				// Perform operations with paramName and paramVal
+				
+			}
         }
 
         [HttpPost]
