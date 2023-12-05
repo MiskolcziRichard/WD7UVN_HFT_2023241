@@ -16,7 +16,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
         {
             services.AddTransient<ILogicServices, LogicServices>();
             services.AddTransient<CompanyDbContext>();
-			services.AddTransient<ICRUD>();
+            services.AddTransient<ICRUD, CRUD>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
