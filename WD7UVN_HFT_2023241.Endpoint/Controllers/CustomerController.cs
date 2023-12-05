@@ -16,10 +16,17 @@ namespace WD7UVN_HFT_2023241.Endpoint
             this.LogicServices = LogicServices;
         }
 
-        [HttpGet()]
-        public IActionResult ReadAllCustomers()
+        [HttpGet("WhoUsesService/{id}")]
+        public IQueryable<Customer> WhoUsesService(int id)
         {
-            return View(LogicServices.CRUDOperations.ReadAllCustomers());
+            return LogicServices.WhoUsesService(id);
+        }
+
+        [HttpGet()]
+        public IQueryable<Customer> ReadAllCustomers()
+        {
+
+            return LogicServices.CRUDOperations.ReadAllCustomers();
         }
 
         [HttpGet("{id}")]

@@ -17,9 +17,9 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet()]
-        public IActionResult ReadAllMaintainerTeams()
+        public IQueryable<MaintainerTeam> ReadAllMaintainerTeams()
         {
-            return View(LogicServices.CRUDOperations.ReadAllMaintainerTeams());
+            return LogicServices.CRUDOperations.ReadAllMaintainerTeams();
         }
 
         [HttpGet("{id}")]

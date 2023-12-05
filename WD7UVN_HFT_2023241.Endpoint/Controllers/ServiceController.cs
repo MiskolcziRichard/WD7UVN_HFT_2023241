@@ -17,9 +17,9 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet()]
-        public IActionResult ReadAllServices()
+        public IQueryable<Service> ReadAllServices()
         {
-            return View(LogicServices.CRUDOperations.ReadAllServices());
+            return LogicServices.CRUDOperations.ReadAllServices();
         }
 
         [HttpGet("{id}")]
