@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
 using WD7UVN_HFT_2023241.Models;
-using System.Collections;
 
 namespace WD7UVN_HFT_2023241.Endpoint
 {
@@ -17,6 +15,24 @@ namespace WD7UVN_HFT_2023241.Endpoint
         {
             this.LogicServices = LogicServices;
         }
+
+		[HttpGet("WhoWorksInMaintainerTeam/{id}")]
+		public IQueryable<Employee> WhoWorksInMaintainerTeam(int id)
+		{
+			return LogicServices.WhoWorksInMaintainerTeam(id);
+		}
+
+		[HttpGet("GetSubordinates/{id}")]
+		public IQueryable<Employee> GetSubordinates(int id)
+		{
+			return LogicServices.GetSubordinates(id);
+		}
+
+		[HttpGet("WhoUsesService")]
+		public IQueryable<Customer> WhoUsesService(int id)
+		{
+			return LogicServices.WhoUsesService(id);
+		}
 
         [HttpGet("Employees")]
         public IQueryable<Employee> ReadAllEmployees()
