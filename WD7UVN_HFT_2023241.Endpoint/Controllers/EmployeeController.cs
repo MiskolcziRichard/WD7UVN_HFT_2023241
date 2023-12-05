@@ -29,9 +29,9 @@ namespace WD7UVN_HFT_2023241.Endpoint
 		}
 
         [HttpGet()]
-        public IActionResult ReadAllEmployees()
+        public IQueryable<Employee> ReadAllEmployees()
         {
-            return View(LogicServices.CRUDOperations.ReadAllEmployees());
+            return LogicServices.CRUDOperations.ReadAllEmployees();
         }
 
         [HttpGet("{id}")]
