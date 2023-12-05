@@ -6,7 +6,7 @@ using WD7UVN_HFT_2023241.Models;
 namespace WD7UVN_HFT_2023241.Endpoint
 {
     [ApiController]
-    [Route("api/database")]
+    [Route("api/Customer")]
     public class CustomerController : ControllerBase
     {
         public ILogicServices LogicServices { get; set; }
