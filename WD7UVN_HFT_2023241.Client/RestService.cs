@@ -9,7 +9,7 @@ namespace WD7UVN_HFT_2023241.Client
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "api")
+        public RestService(string baseurl, string pingableEndpoint = "/api")
         {
             bool isOk = false;
             do
