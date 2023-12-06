@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Security;
 
 namespace WD7UVN_HFT_2023241.Client
 {
@@ -9,7 +10,7 @@ namespace WD7UVN_HFT_2023241.Client
     {
         HttpClient client;
 
-        public RestService(string baseurl = "127.0.0.1:5001", string pingableEndpoint = "/swagger")
+        public RestService(string baseurl = "https://localhost:5001", string pingableEndpoint = "/swagger")
         {
             bool isOk = false;
             do
@@ -21,11 +22,13 @@ namespace WD7UVN_HFT_2023241.Client
 
         private bool Ping(string url)
         {
-            try
-            {
-                WebClient wc = new WebClient();
-                wc.DownloadData(url);
-                return true;
+			try
+			{
+				ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
+
+				WebClient wc = new WebClient();
+				wc.DownloadData(url);
+				return true;
             }
             catch
             {
@@ -35,7 +38,15 @@ namespace WD7UVN_HFT_2023241.Client
 
         private void Init(string baseurl)
         {
-            client = new HttpClient();
+			HttpClientHandler handler = new HttpClientHandler();
+			handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+			handler.ServerCertificateCustomValidationCallback = 
+				(httpRequestMessage, cert, cetChain, policyErrors) =>
+				{
+					return true;
+				};
+
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri(baseurl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -45,8 +56,9 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 client.GetAsync("").GetAwaiter().GetResult();
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException e)
             {
+				Console.WriteLine(e.Message);
                 throw new ArgumentException("Endpoint is not available!");
             }
 
