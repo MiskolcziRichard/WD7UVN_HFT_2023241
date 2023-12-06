@@ -1,6 +1,5 @@
-﻿using System;
-using WD7UVN_HFT_2023241.Repository;
-using System.Net.Http.Headers;
+﻿using WD7UVN_HFT_2023241.Models;
+using 
 
 namespace WD7UVN_HFT_2023241.Client
 {
@@ -8,8 +7,10 @@ namespace WD7UVN_HFT_2023241.Client
     {
         static void Main(string[] args)
         {
-            CompanyDbContext dbContext = new CompanyDbContext();
             RestService rest = new RestService();
+            List<Employee> list = rest.Get<Employee>("/api");
         }
+
+
     }
 }
