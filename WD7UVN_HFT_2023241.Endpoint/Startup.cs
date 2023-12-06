@@ -30,6 +30,8 @@ namespace WD7UVN_HFT_2023241.Endpoint
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WD7UVN_HFT_2023241.Endpoint", Version = "v1" });
             });
+
+			Database.Context = new CompanyDbContext();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
