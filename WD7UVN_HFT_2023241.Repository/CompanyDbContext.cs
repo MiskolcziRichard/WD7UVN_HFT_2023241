@@ -72,6 +72,8 @@ namespace WD7UVN_HFT_2023241.Repository
                 new Service{
                 NAME = "Microsoft Exchange",
                 ID = 1,
+				PORT = 443,
+				IP = "10.42.567.3",
                 MAINTAINER_ID = 1}
             );
 
