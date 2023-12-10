@@ -17,9 +17,9 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
 		[HttpGet()]
-		public IQueryable<Customer> WhoUsesService([FromQuery] int id)
+		public IQueryable<Employee> WhoUsesService([FromQuery] int id)
 		{
-			return LogicServices.WhoUsesService(id);
+			return LogicServices.WhoMaintainsService(id);
 		}
     }
 }
