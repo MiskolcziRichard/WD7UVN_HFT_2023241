@@ -23,7 +23,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet("{id}")]
-        public MaintainerTeam ReadMaintainerTeam(int id)
+        public MaintainerTeam ReadMaintainerTeam([FromQuery] int id)
         {
             return LogicServices.CRUDOperations.ReadMaintainerTeam(id);
         }

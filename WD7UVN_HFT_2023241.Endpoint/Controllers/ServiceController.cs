@@ -23,7 +23,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet("{id}")]
-        public Service ReadService(int id)
+        public Service ReadService([FromQuery] int id)
         {
             return LogicServices.CRUDOperations.ReadService(id);
         }

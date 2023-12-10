@@ -17,7 +17,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
 		[HttpGet("{id}")]
-		public IQueryable<Employee> WhoWorksInMaintainerTeam(int id)
+		public IQueryable<Employee> WhoWorksInMaintainerTeam([FromQuery] int id)
 		{
 			return LogicServices.WhoWorksInMaintainerTeam(id);
 		}
