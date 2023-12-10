@@ -1,6 +1,0 @@
-@WD7UVN_HFT_2023241.Endpoint_HostAddress = http://localhost:5146
-
-GET {{WD7UVN_HFT_2023241.Endpoint_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
