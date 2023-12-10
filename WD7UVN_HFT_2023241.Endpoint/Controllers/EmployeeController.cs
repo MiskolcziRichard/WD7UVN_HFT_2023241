@@ -23,7 +23,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet("{id}")]
-        public Employee ReadEmployee([FromQuery] int id)
+        public Employee ReadEmployee(int id)
         {
             return LogicServices.CRUDOperations.ReadEmployee(id);
         }

@@ -16,7 +16,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
             this.LogicServices = LogicServices;
         }
 
-		[HttpGet("{id}")]
+		[HttpGet()]
 		public IQueryable<Employee> GetSubordinates([FromQuery] int id)
 		{
 			return LogicServices.GetSubordinates(id);
