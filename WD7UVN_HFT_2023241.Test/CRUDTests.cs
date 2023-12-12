@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace WD7UVN_HFT_2023241.Test
 {
-    public class Tests
+    public class CRUDTests
     {
 		Mock<ICRUD> mockCRUD;
 		LogicServices logic;
