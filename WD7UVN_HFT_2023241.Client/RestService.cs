@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Security;
+using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Client
 {
     class RestService
     {
-        HttpClient client;
+        private static HttpClient client;
 
         public RestService(string baseurl = "https://localhost:5001", string pingableEndpoint = "/swagger")
         {
@@ -64,7 +66,7 @@ namespace WD7UVN_HFT_2023241.Client
 
         }
 
-        public List<T> Get<T>(string endpoint)
+        public static List<T> Get<T>(string endpoint)
         {
             List<T> items = new List<T>();
             HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
@@ -80,7 +82,7 @@ namespace WD7UVN_HFT_2023241.Client
             return items;
         }
 
-        public T GetSingle<T>(string endpoint)
+        public static T GetSingle<T>(string endpoint)
         {
             T item = default(T);
             HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
@@ -96,7 +98,7 @@ namespace WD7UVN_HFT_2023241.Client
             return item;
         }
 
-        public T Get<T>(int id, string endpoint)
+        public static T Get<T>(int id, string endpoint)
         {
             T item = default(T);
             HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
@@ -112,7 +114,7 @@ namespace WD7UVN_HFT_2023241.Client
             return item;
         }
 
-        public void Post<T>(T item, string endpoint)
+        public static void Post<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
                 client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
@@ -125,7 +127,7 @@ namespace WD7UVN_HFT_2023241.Client
             response.EnsureSuccessStatusCode();
         }
 
-        public void Delete(int id, string endpoint)
+        public static void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
                 client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
@@ -139,7 +141,7 @@ namespace WD7UVN_HFT_2023241.Client
             response.EnsureSuccessStatusCode();
         }
 
-        public void Put<T>(T item, string endpoint)
+        public static void Put<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
                 client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
@@ -153,6 +155,85 @@ namespace WD7UVN_HFT_2023241.Client
             response.EnsureSuccessStatusCode();
         }
 
+        public static IQueryable<Employee> WhoWorksInMaintainerTeam(int id)
+        {
+            IQueryable<Employee> item = default(IQueryable<Employee>);
+            HttpResponseMessage response = client.GetAsync("/api/WhoWorksInMaintainerTeam/" + id.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IQueryable<Employee>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return item;
+        }
+
+        public static IQueryable<Employee> GetSubordinates(int id)
+        {
+            IQueryable<Employee> item = default(IQueryable<Employee>);
+            HttpResponseMessage response = client.GetAsync("/api/GetSubordinates/" + id.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IQueryable<Employee>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return item;
+        }
+
+        public static IQueryable<Customer> WhoUsesService(int id)
+        {
+            IQueryable<Customer> item = default(IQueryable<Customer>);
+            HttpResponseMessage response = client.GetAsync("/api/WhoUsesService/" + id.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IQueryable<Customer>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return item;
+        }
+
+        public static Employee WhoIsResponsibleForService(int id)
+        {
+            Employee item = default(Employee);
+            HttpResponseMessage response = client.GetAsync("/api/WhoIsResponsibleForService/" + id.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<Employee>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return item;
+        }
+
+        public static IQueryable<Employee> WhoMaintainsService(int id)
+        {
+            IQueryable<Employee> item = default(IQueryable<Employee>);
+            HttpResponseMessage response = client.GetAsync("/api/WhoMaintainsService/" + id.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IQueryable<Employee>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return item;
+        }
     }
     public class RestExceptionInfo
     {
