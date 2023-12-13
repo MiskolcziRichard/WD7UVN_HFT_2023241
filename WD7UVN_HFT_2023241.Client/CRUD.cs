@@ -7,7 +7,6 @@ namespace WD7UVN_HFT_2023241.Client
     {
         public static void Customer()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -34,7 +33,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Employee()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -62,7 +60,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Service()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -93,7 +90,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void MaintainerTeam()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -122,7 +118,6 @@ namespace WD7UVN_HFT_2023241.Client
     {
         public static void Customer()
         {
-            Console.Clear();
 
             foreach (Customer c in RestService.Get<Customer>("/api/Customer"))
             {
@@ -131,12 +126,12 @@ namespace WD7UVN_HFT_2023241.Client
                 Console.WriteLine("Email: " + c.EMAIL);
                 Console.WriteLine("Phone: " + c.PHONE);
                 Console.WriteLine("ID of used service: " + c.SERVICE_ID);
+                Console.WriteLine();
             }
         }
 
         public static void Employee()
         {
-            Console.Clear();
 
             foreach (Employee c in RestService.Get<Employee>("/api/Employee"))
             {
@@ -146,12 +141,12 @@ namespace WD7UVN_HFT_2023241.Client
                 Console.WriteLine("Phone: " + c.PHONE);
                 Console.WriteLine("Maintainer team's ID: " + c.MAINTAINER_ID);
                 Console.WriteLine("Manager's ID: " + c.MANAGER_ID);
+                Console.WriteLine();
             }
         }
 
         public static void Service()
         {
-            Console.Clear();
 
             foreach (Service c in RestService.Get<Service>("/api/Service"))
             {
@@ -164,12 +159,12 @@ namespace WD7UVN_HFT_2023241.Client
                 Console.WriteLine("Service domain: " + c.SERVICE_DOMAIN);
                 Console.WriteLine("Version: " + c.VERSION);
                 Console.WriteLine("Maintainer team's ID: " + c.MAINTAINER_ID);
+                Console.WriteLine();
             }
         }   
 
         public static void MaintainerTeam()
         {
-            Console.Clear();
 
             foreach (MaintainerTeam c in RestService.Get<MaintainerTeam>("/api/MaintainerTeam"))
             {
@@ -177,6 +172,7 @@ namespace WD7UVN_HFT_2023241.Client
                 Console.WriteLine("ID: " + c.ID);
                 Console.WriteLine("Email: " + c.EMAIL);
                 Console.WriteLine("Leader's ID: " + c.LEADER_ID);
+                Console.WriteLine();
             }
         } 
     }
@@ -185,7 +181,6 @@ namespace WD7UVN_HFT_2023241.Client
     {
         public static void Customer()
         {
-            Console.Clear();
 
             while (true)
             {
@@ -228,7 +223,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Employee()
         {
-            Console.Clear();
 
             while (true)
             {
@@ -275,7 +269,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Service()
         {
-            Console.Clear();
 
             while (true)
             {
@@ -334,7 +327,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void MaintainerTeam()
         {
-            Console.Clear();
 
             while (true)
             {
@@ -376,7 +368,6 @@ namespace WD7UVN_HFT_2023241.Client
     {
         public static void Customer()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -439,7 +430,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Employee()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -508,7 +498,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Service()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -591,7 +580,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void MaintainerTeam()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -653,7 +641,6 @@ namespace WD7UVN_HFT_2023241.Client
     {
         public static void Customer()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -684,7 +671,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Employee()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -715,7 +701,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void Service()
         {
-            Console.Clear();
 
             int input;
             while (true)
@@ -746,7 +731,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static void MaintainerTeam()
         {
-            Console.Clear();
 
             int input;
             while (true)
