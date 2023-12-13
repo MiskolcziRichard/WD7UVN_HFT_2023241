@@ -119,7 +119,7 @@ namespace WD7UVN_HFT_2023241.Client
         public static void Customer()
         {
 
-            foreach (Customer c in RestService.Get<Customer>("/api/Customer"))
+            foreach (Customer c in RestService.Get<Customer>("/api/Customer/"))
             {
                 Console.WriteLine("Name: " + c.NAME);
                 Console.WriteLine("ID: " + c.ID);
@@ -133,7 +133,7 @@ namespace WD7UVN_HFT_2023241.Client
         public static void Employee()
         {
 
-            foreach (Employee c in RestService.Get<Employee>("/api/Employee"))
+            foreach (Employee c in RestService.Get<Employee>("/api/Employee/"))
             {
                 Console.WriteLine("Name: " + c.NAME);
                 Console.WriteLine("ID: " + c.ID);
@@ -148,7 +148,7 @@ namespace WD7UVN_HFT_2023241.Client
         public static void Service()
         {
 
-            foreach (Service c in RestService.Get<Service>("/api/Service"))
+            foreach (Service c in RestService.Get<Service>("/api/Service/"))
             {
                 Console.WriteLine("Name: " + c.NAME);
                 Console.WriteLine("ID: " + c.ID);
@@ -166,7 +166,7 @@ namespace WD7UVN_HFT_2023241.Client
         public static void MaintainerTeam()
         {
 
-            foreach (MaintainerTeam c in RestService.Get<MaintainerTeam>("/api/MaintainerTeam"))
+            foreach (MaintainerTeam c in RestService.Get<MaintainerTeam>("/api/MaintainerTeam/"))
             {
                 Console.WriteLine("Name: " + c.NAME);
                 Console.WriteLine("ID: " + c.ID);
@@ -210,7 +210,7 @@ namespace WD7UVN_HFT_2023241.Client
                         SERVICE_ID = service_id
                     };
 
-                    RestService.Put<Customer>(c, "/api/Customer");
+                    RestService.Put<Customer>(c, "/api/Customer/");
 
                     break;
                 }
@@ -256,7 +256,7 @@ namespace WD7UVN_HFT_2023241.Client
                         MANAGER_ID = manager_id
                     };
 
-                    RestService.Put<Employee>(c, "/api/Employee");
+                    RestService.Put<Employee>(c, "/api/Employee/");
 
                     break;
                 }
@@ -314,7 +314,7 @@ namespace WD7UVN_HFT_2023241.Client
                         VERSION = version
                     };
 
-                    RestService.Put<Service>(c, "/api/Service");
+                    RestService.Put<Service>(c, "/api/Service/");
 
                     break;
                 }
@@ -352,7 +352,7 @@ namespace WD7UVN_HFT_2023241.Client
                         EMAIL = email
                     };
 
-                    RestService.Put<MaintainerTeam>(c, "/api/MaintainerTeam");
+                    RestService.Put<MaintainerTeam>(c, "/api/MaintainerTeam/");
 
                     break;
                 }
@@ -418,7 +418,7 @@ namespace WD7UVN_HFT_2023241.Client
                         SERVICE_ID = service_id
                     };
 
-                    RestService.Post<Customer>(c, "/api/Customer");
+                    RestService.Post<Customer>(c, "/api/Customer/");
                     break;
                 }
                 catch (FormatException)
@@ -486,7 +486,7 @@ namespace WD7UVN_HFT_2023241.Client
                         MAINTAINER_ID = maintainer_id
                     };
 
-                    RestService.Post<Employee>(c, "/api/Employee");
+                    RestService.Post<Employee>(c, "/api/Employee/");
                     break;
                 }
                 catch (FormatException)
@@ -568,7 +568,7 @@ namespace WD7UVN_HFT_2023241.Client
                         VERSION = version
                     };
 
-                    RestService.Post<Service>(c, "/api/Service");
+                    RestService.Post<Service>(c, "/api/Service/");
                     break;
                 }
                 catch (FormatException)
@@ -626,7 +626,7 @@ namespace WD7UVN_HFT_2023241.Client
                         EMAIL = email
                     };
 
-                    RestService.Post<MaintainerTeam>(c, "/api/MaintainerTeam");
+                    RestService.Post<MaintainerTeam>(c, "/api/MaintainerTeam/");
                     break;
                 }
                 catch (FormatException)

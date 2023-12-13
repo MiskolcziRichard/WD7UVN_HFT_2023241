@@ -9,6 +9,7 @@ namespace WD7UVN_HFT_2023241.Client
 
         static void Main(string[] args)
         {
+            rest = new RestService();
             ActionMenuHandler();
         }
 

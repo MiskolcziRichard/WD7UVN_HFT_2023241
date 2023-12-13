@@ -101,7 +101,7 @@ namespace WD7UVN_HFT_2023241.Client
         public static T Get<T>(int id, string endpoint)
         {
             T item = default(T);
-            HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+            HttpResponseMessage response = client.GetAsync(endpoint + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
                 item = response.Content.ReadAsAsync<T>().GetAwaiter().GetResult();
@@ -130,7 +130,7 @@ namespace WD7UVN_HFT_2023241.Client
         public static void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
-                client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+                client.DeleteAsync(endpoint + id.ToString()).GetAwaiter().GetResult();
 
             if (!response.IsSuccessStatusCode)
             {
