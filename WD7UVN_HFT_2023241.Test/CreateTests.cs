@@ -211,16 +211,6 @@ namespace WD7UVN_HFT_2023241.Test
 
             logic.CRUDOperations.CreateMaintainerTeam(s);
 
-            foreach (MaintainerTeam x in testData)
-            {
-                Console.WriteLine(s);
-            }
-
-            foreach (MaintainerTeam x in logic.CRUDOperations.ReadAllMaintainerTeams())
-			{
-                Console.WriteLine(s);
-            }
-
             Assert.That(logic.CRUDOperations.ReadAllMaintainerTeams() == testData);
         }
     }
