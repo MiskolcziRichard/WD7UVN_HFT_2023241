@@ -13,6 +13,7 @@ namespace WD7UVN_HFT_2023241.Test
         public void Setup()
         {
             logic = new LogicServices(new CRUD());
+            Database.Context = new CompanyDbContext();
         }
 
         [Test]
