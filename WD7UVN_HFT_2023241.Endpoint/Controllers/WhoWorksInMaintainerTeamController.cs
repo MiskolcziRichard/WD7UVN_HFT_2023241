@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
 using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
 using WD7UVN_HFT_2023241.Models;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
 
 namespace WD7UVN_HFT_2023241.Endpoint
 {
@@ -17,9 +19,16 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
 		[HttpGet()]
-		public IQueryable<Employee> WhoWorksInMaintainerTeam([FromQuery] int id)
+		public IQueryable<Employee>? WhoWorksInMaintainerTeam([FromQuery] int id)
 		{
-			return LogicServices.WhoWorksInMaintainerTeam(id);
+            try
+            {
+			    return LogicServices.WhoWorksInMaintainerTeam(id);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
 		}
     }
 }

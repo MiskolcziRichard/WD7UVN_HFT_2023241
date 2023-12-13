@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
 using WD7UVN_HFT_2023241.Logic;
-using System.Linq;
 using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Endpoint
@@ -17,9 +17,16 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
 		[HttpGet()]
-		public Employee WhoIsResponsibleForService([FromQuery] int id)
+		public Employee? WhoIsResponsibleForService([FromQuery] int id)
 		{
-            return LogicServices.WhoIsResponsibleForService(id);
+            try
+            {
+                return LogicServices.WhoIsResponsibleForService(id);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
     }
 }

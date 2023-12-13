@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
+using System;
 using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Endpoint
@@ -17,9 +18,16 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
 		[HttpGet()]
-		public IQueryable<Customer> WhoUsesService([FromQuery] int id)
+		public IQueryable<Customer>? WhoUsesService([FromQuery] int id)
 		{
-			return LogicServices.WhoUsesService(id);
+            try
+            {
+			    return LogicServices.WhoUsesService(id);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
 		}
     }
 }

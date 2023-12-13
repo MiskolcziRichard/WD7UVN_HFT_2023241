@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
+using System;
 using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Endpoint
@@ -17,15 +18,29 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet()]
-        public IQueryable<Service> ReadAllServices()
+        public IQueryable<Service>? ReadAllServices()
         {
-            return LogicServices.CRUDOperations.ReadAllServices();
+            try
+            {
+                return LogicServices.CRUDOperations.ReadAllServices();
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
         [HttpGet("{id}")]
-        public Service ReadService(int id)
+        public Service? ReadService(int id)
         {
-            return LogicServices.CRUDOperations.ReadService(id);
+            try
+            {
+                return LogicServices.CRUDOperations.ReadService(id);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
 [HttpPut()]

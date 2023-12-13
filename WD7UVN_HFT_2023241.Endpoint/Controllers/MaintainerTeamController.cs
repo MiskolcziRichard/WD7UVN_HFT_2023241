@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
+using System;
 using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Endpoint
@@ -17,24 +18,38 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet()]
-        public IQueryable<MaintainerTeam> ReadAllMaintainerTeams()
+        public IQueryable<MaintainerTeam>? ReadAllMaintainerTeams()
         {
-            return LogicServices.CRUDOperations.ReadAllMaintainerTeams();
+            try
+            {
+                return LogicServices.CRUDOperations.ReadAllMaintainerTeams();
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
         [HttpGet("{id}")]
-        public MaintainerTeam ReadMaintainerTeam(int id)
+        public MaintainerTeam? ReadMaintainerTeam(int id)
         {
-            return LogicServices.CRUDOperations.ReadMaintainerTeam(id);
+            try
+            {
+                return LogicServices.CRUDOperations.ReadMaintainerTeam(id);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
-[HttpPut()]
+        [HttpPut()]
         public void PutMaintainerTeam([FromBody] MaintainerTeam e)
         {
             LogicServices.CRUDOperations.CreateMaintainerTeam(e);
         }
 
-[HttpPost()]
+        [HttpPost()]
         public void UpdateMaintainerTeam([FromBody] MaintainerTeam e)
         {
             LogicServices.CRUDOperations.UpdateMaintainerTeam(e);

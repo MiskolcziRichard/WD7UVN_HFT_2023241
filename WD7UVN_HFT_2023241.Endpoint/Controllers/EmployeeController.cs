@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
+using System;
 using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Endpoint
@@ -17,24 +18,38 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet()]
-        public IQueryable<Employee> ReadAllEmployees()
+        public IQueryable<Employee>? ReadAllEmployees()
         {
-            return LogicServices.CRUDOperations.ReadAllEmployees();
+            try
+            {
+                return LogicServices.CRUDOperations.ReadAllEmployees();
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
         [HttpGet("{id}")]
-        public Employee ReadEmployee(int id)
+        public Employee? ReadEmployee(int id)
         {
-            return LogicServices.CRUDOperations.ReadEmployee(id);
+            try
+            {
+                return LogicServices.CRUDOperations.ReadEmployee(id);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
-[HttpPut()]
+        [HttpPut()]
         public void PutEmployee([FromBody] Employee e)
         {
             LogicServices.CRUDOperations.CreateEmployee(e);
         }
 
-[HttpPost()]
+        [HttpPost()]
         public void UpdateEmployee([FromBody] Employee e)
         {
             LogicServices.CRUDOperations.UpdateEmployee(e);

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
 using WD7UVN_HFT_2023241.Models;
+using System;
 
 namespace WD7UVN_HFT_2023241.Endpoint
 {
@@ -17,24 +18,38 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
         [HttpGet()]
-        public IQueryable<Customer> ReadAllCustomers()
+        public IQueryable<Customer>? ReadAllCustomers()
         {
-            return LogicServices.CRUDOperations.ReadAllCustomers();
+            try
+            {
+                return LogicServices.CRUDOperations.ReadAllCustomers();
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
         [HttpGet("{id}")]
-        public Customer ReadCustomer(int id)
+        public Customer? ReadCustomer(int id)
         {
-            return LogicServices.CRUDOperations.ReadCustomer(id);
+            try
+            {
+                return LogicServices.CRUDOperations.ReadCustomer(id);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 
-[HttpPut()]
+        [HttpPut()]
         public void PutCustomer([FromBody] Customer e)
         {
             LogicServices.CRUDOperations.CreateCustomer(e);
         }
 
-[HttpPost()]
+        [HttpPost()]
         public void UpdateCustomer([FromBody] Customer e)
         {
             LogicServices.CRUDOperations.UpdateCustomer(e);
