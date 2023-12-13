@@ -52,12 +52,12 @@ namespace WD7UVN_HFT_2023241.Repository
             Database.Context.SaveChanges();
         }
 
-        public Employee ReadEmployee(int employeeId)
+        public Employee? ReadEmployee(int employeeId)
         {
             return Database.Context.Employees.Find(employeeId);
         }
 
-        public IQueryable<Employee> ReadAllEmployees()
+        public IQueryable<Employee>? ReadAllEmployees()
         {
             return Database.Context.Employees.AsQueryable();
         }
@@ -88,12 +88,12 @@ namespace WD7UVN_HFT_2023241.Repository
             Database.Context.SaveChanges();
         }
 
-        public Service ReadService(int serviceId)
+        public Service? ReadService(int serviceId)
         {
             return Database.Context.Services.Find(serviceId);
         }
 
-        public IQueryable<Service> ReadAllServices()
+        public IQueryable<Service>? ReadAllServices()
         {
             return Database.Context.Services.AsQueryable();
         }
@@ -124,12 +124,12 @@ namespace WD7UVN_HFT_2023241.Repository
             Database.Context.SaveChanges();
         }
 
-        public MaintainerTeam ReadMaintainerTeam(int maintainerTeamId)
+        public MaintainerTeam? ReadMaintainerTeam(int maintainerTeamId)
         {
             return Database.Context.Maintainers.Find(maintainerTeamId);
         }
 
-        public IQueryable<MaintainerTeam> ReadAllMaintainerTeams()
+        public IQueryable<MaintainerTeam>? ReadAllMaintainerTeams()
         {
             return Database.Context.Maintainers.AsQueryable();
         }
@@ -160,12 +160,12 @@ namespace WD7UVN_HFT_2023241.Repository
             Database.Context.SaveChanges();
         }
 
-        public Customer ReadCustomer(int customerId)
+        public Customer? ReadCustomer(int customerId)
         {
             return Database.Context.Customers.Find(customerId);
         }
 
-        public IQueryable<Customer> ReadAllCustomers()
+        public IQueryable<Customer>? ReadAllCustomers()
         {
             return Database.Context.Customers.AsQueryable();
         }
