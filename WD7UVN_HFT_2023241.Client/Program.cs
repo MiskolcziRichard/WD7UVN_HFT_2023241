@@ -10,6 +10,7 @@ namespace WD7UVN_HFT_2023241.Client
         {
             RestService rest = new RestService();
 
+            Console.WriteLine("All employees:\n");
             List<Employee> employeeList = rest.Get<Employee>("/api/Employee/");
 			foreach (Employee e in employeeList)
 			{
@@ -20,6 +21,7 @@ namespace WD7UVN_HFT_2023241.Client
 				);
 			}
 
+            Console.WriteLine("\n\nAll customers:\n");
             List<Customer> customerList = rest.Get<Customer>("/api/Customer/");
 			foreach (Customer c in customerList)
 			{
@@ -30,7 +32,8 @@ namespace WD7UVN_HFT_2023241.Client
 				);
 			}
 
-			List<MaintainerTeam> maintainerTeamList = rest.Get<MaintainerTeam>("/api/MaintainerTeam/");
+            Console.WriteLine("\n\nMaintainer teams:\n");
+            List<MaintainerTeam> maintainerTeamList = rest.Get<MaintainerTeam>("/api/MaintainerTeam/");
 			foreach (MaintainerTeam m in maintainerTeamList)
 			{
 				Console.WriteLine(
@@ -40,7 +43,8 @@ namespace WD7UVN_HFT_2023241.Client
 				);
 			}
 
-			List<Service> serviceList = rest.Get<Service>("/api/Service/");
+            Console.WriteLine("\n\nMaintained services:\n");
+            List<Service> serviceList = rest.Get<Service>("/api/Service/");
 			foreach (Service s in serviceList)
 			{
 				Console.WriteLine(
