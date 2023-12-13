@@ -157,7 +157,7 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static IQueryable<Employee> WhoWorksInMaintainerTeam(int id)
         {
-            IQueryable<Employee> item = default(IQueryable<Employee>);
+            var item = default(IQueryable<Employee>);
             HttpResponseMessage response = client.GetAsync("/api/WhoWorksInMaintainerTeam?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
@@ -173,7 +173,7 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static IQueryable<Employee> GetSubordinates(int id)
         {
-            IQueryable<Employee> item = default(IQueryable<Employee>);
+            var item = default(IQueryable<Employee>);
             HttpResponseMessage response = client.GetAsync("/api/GetSubordinates?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
@@ -189,7 +189,7 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static IQueryable<Customer> WhoUsesService(int id)
         {
-            IQueryable<Customer> item = default(IQueryable<Customer>);
+            var  item = default(IQueryable<Customer>);
             HttpResponseMessage response = client.GetAsync("/api/WhoUsesService?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
@@ -221,7 +221,7 @@ namespace WD7UVN_HFT_2023241.Client
 
         public static IQueryable<Employee> WhoMaintainsService(int id)
         {
-            IQueryable<Employee> item = default(IQueryable<Employee>);
+            var item = default(IQueryable<Employee>);
             HttpResponseMessage response = client.GetAsync("/api/WhoMaintainsService?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
