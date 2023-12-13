@@ -64,7 +64,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         static int TypeSelectorMenu()
         {
-            Console.Clear();
             Console.WriteLine("1.) Employee");
             Console.WriteLine("2.) Customer");
             Console.WriteLine("3.) Service");
@@ -87,7 +86,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         static int ReadMenuHandler()
         {
-            Console.Clear();
             Console.WriteLine("1.) ");
 
             while (true)
@@ -129,7 +127,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         static int NonCRUDMenu()
         {
-            Console.Clear();
             Console.WriteLine("1.) Who works in specified maintainer team?");
             Console.WriteLine("2.) Get manager's subordinates");
             Console.WriteLine("3.) Which client(s) use(s) specified service?");
@@ -152,7 +149,6 @@ namespace WD7UVN_HFT_2023241.Client
 
         static int ActionMenu()
         {
-            Console.Clear();
             Console.WriteLine("1.) Read");
             Console.WriteLine("2.) ReadAll");
             Console.WriteLine("3.) Create");
