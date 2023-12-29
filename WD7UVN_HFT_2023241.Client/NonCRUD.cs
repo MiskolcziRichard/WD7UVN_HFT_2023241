@@ -1,36 +1,15 @@
 using System;
 using System.Linq;
+using System.Runtime.Serialization;
+using ConsoleTools;
 using WD7UVN_HFT_2023241.Models;
 
 namespace WD7UVN_HFT_2023241.Client
 {
     public class NonCRUD 
     {
-
-        public static void WhoMaintainsService()
+        private static void RESTWhoMaintainsService(int id)
         {
-            foreach (Service s in RestService.Get<Service>("/api/Service"))
-            {
-                Console.WriteLine("Service: " + s.NAME);
-                Console.WriteLine("ID: " + s.ID);
-            }
-
-            int id = 1;
-            bool flag = true;
-            while (flag)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    flag = false;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-
             IQueryable<Employee> res = RestService.WhoMaintainsService(id);
             if (res.Count() != 0)
             {
@@ -45,7 +24,16 @@ namespace WD7UVN_HFT_2023241.Client
             }
             else
             {
-                Console.WriteLine("No such database entry was found :/");
+                Console.WriteLine("ERROR: No such database entry was found :/");
+            }
+        }
+
+        public static void WhoMaintainsService()
+        {
+            var servicesMenu = new ConsoleMenu();
+            foreach (Service s in RestService.Get<Service>("/api/Service"))
+            {
+                servicesMenu.Add($"{s.NAME}: {s.ID}", () => RESTWhoMaintainsService(s.ID));
             }
         }
 

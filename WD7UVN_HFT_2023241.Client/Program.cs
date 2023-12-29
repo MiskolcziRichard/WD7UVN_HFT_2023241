@@ -1,175 +1,83 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using ConsoleTools;
 
 namespace WD7UVN_HFT_2023241.Client
 {
-    class Program
-    {
-        static bool FLAG = true;
-        static RestService rest = new RestService();
+	public class Program
+	{
+		private static async Task Main(string[] args)
+		{
+			var commonConfig = new MenuConfig
+			{
+				Selector = "--> ",
+				EnableFilter = true,
+				EnableBreadcrumb = true,
+				WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles)),
+			};
+			
+			var nonCrudMenu = new ConsoleMenu(args, level: 2)
+				.Add("Who maintains specified service?", () => NonCRUD.WhoMaintainsService())
+				.Add("Get employee's subordinates", ConsoleMenu.Close)
+				.Add("Get clients of specified service", ConsoleMenu.Close)
+				.Add("Get employees in specified maintainer team", ConsoleMenu.Close)
+				.Add("Get employee responsible for specified service", ConsoleMenu.Close)
+				.Add("Sub_Exit", () => Environment.Exit(0))
+				.Configure(commonConfig)
+				.Configure(config =>
+				{
+					config.Title = "Submenu1";
+				});
+			
+			var crudMenu = new ConsoleMenu(args, level: 1)
+				.Add("Sub_One", () => SomeAction("Sub_One"))
+				.Add("Sub_Five", async (cancellationToken) => await SomeAction2(cancellationToken))
+				.Add("Get all", ConsoleMenu.Close)
+				.Add("Get by id", ConsoleMenu.Close)
+				.Add("Create", ConsoleMenu.Close)
+				.Add("Update", ConsoleMenu.Close)
+				.Add("Delete", ConsoleMenu.Close)
+				.Add("Sub_Close", ConsoleMenu.Close)
+				.Add("Sub_Exit", () => Environment.Exit(0))
+				.Configure(commonConfig)
+				.Configure(config =>
+				{
+					config.Title = "Tables";
+				});
+			
+			var menu = new ConsoleMenu(args, level: 0)
+				.Add("One", () => SomeAction("One"))
+				.Add("CRUD", crudMenu.Show)
+				.Add("Non-CRUD", nonCrudMenu.Show)
+				.Add("Close", ConsoleMenu.Close)
+				.Add("Exit", () => Environment.Exit(0))
+				.Configure(commonConfig)
+				.Configure(config =>
+				{
+					config.Title = "Main menu";
+					config.EnableWriteTitle = true;
+					config.EnableBreadcrumb = true;
+				});
+			
+			var token = new CancellationTokenSource(7000).Token;
+			await menu.ShowAsync(token);
+		}
 
-        static void Main(string[] args)
-        {
-            rest = new RestService();
-            ActionMenuHandler();
-        }
-
-        static void ActionMenuHandler()
-        {
-            while (FLAG)
-            {
-                int choice = ActionMenu();
-                if (choice == 6)
-                {
-                    NonCRUDMenuHandler();
-                }
-                else if (choice == 0)
-                {
-                    FLAG = false;
-                }
-                else if (1 <= choice && choice <= 5)
-                {
-                    switch (TypeSelectorMenu())
-                    {
-                        case 1:
-                            if (choice == 1) { Read.Employee(); }
-                            else if (choice == 2) { ReadAll.Employee(); }
-                            else if (choice == 3) { Create.Employee(); }
-                            else if (choice == 4) { Update.Employee(); }
-                            else if (choice == 5) { Delete.Employee(); }
-                            break;
-                        case 2:
-                            if (choice == 1) { Read.Customer(); }
-                            else if (choice == 2) { ReadAll.Customer(); }
-                            else if (choice == 3) { Create.Customer(); }
-                            else if (choice == 4) { Update.Customer(); }
-                            else if (choice == 5) { Delete.Customer(); }
-                            break;
-                        case 3:
-                            if (choice == 1) { Read.Service(); }
-                            else if (choice == 2) { ReadAll.Service(); }
-                            else if (choice == 3) { Create.Service(); }
-                            else if (choice == 4) { Update.Service(); }
-                            else if (choice == 5) { Delete.Service(); }
-                            break;
-                        case 4:
-                            if (choice == 1) { Read.MaintainerTeam(); }
-                            else if (choice == 2) { ReadAll.MaintainerTeam(); }
-                            else if (choice == 3) { Create.MaintainerTeam(); }
-                            else if (choice == 4) { Update.MaintainerTeam(); }
-                            else if (choice == 5) { Delete.MaintainerTeam(); }
-                            break;
-                    }
-                }
-            }
-        }
-
-        static int TypeSelectorMenu()
-        {
-            Console.WriteLine("1.) Employee");
-            Console.WriteLine("2.) Customer");
-            Console.WriteLine("3.) Service");
-            Console.WriteLine("4.) MaintainerTeam");
-
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    return Convert.ToInt32(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-
-        }
-
-        static int ReadMenuHandler()
-        {
-            Console.WriteLine("1.) ");
-
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    return Convert.ToInt32(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-        }
-
-        static void NonCRUDMenuHandler()
-        {
-            switch (NonCRUDMenu())
-            {
-                case 1:
-                    NonCRUD.WhoWorksInMaintainerTeam();
-                    break;
-                case 2:
-                    NonCRUD.GetSubordinates();
-                    break;
-                case 3:
-                    NonCRUD.WhoUsesService();
-                    break;
-                case 4:
-                    NonCRUD.WhoIsResponsibleForService();
-                    break;
-                case 5:
-                    NonCRUD.WhoMaintainsService();
-                    break;
-            }
-        }
-
-
-        static int NonCRUDMenu()
-        {
-            Console.WriteLine("1.) Who works in specified maintainer team?");
-            Console.WriteLine("2.) Get manager's subordinates");
-            Console.WriteLine("3.) Which client(s) use(s) specified service?");
-            Console.WriteLine("4.) Who (which manager) is responsible for a specified service?");
-            Console.WriteLine("5.) Get all employees who maintain a specified service");
-
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    return Convert.ToInt32(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-        }
-
-        static int ActionMenu()
-        {
-            Console.WriteLine("1.) Read");
-            Console.WriteLine("2.) ReadAll");
-            Console.WriteLine("3.) Create");
-            Console.WriteLine("4.) Update");
-            Console.WriteLine("5.) Delete");
-            Console.WriteLine("6.) Non-CRUD");
-            Console.WriteLine("0.) Exit");
-
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    return Convert.ToInt32(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-        }
-    }
+		private static void SomeAction(string text)
+		{
+			Console.WriteLine(text);
+			Console.WriteLine("Press any key to continue...");
+			Console.ReadKey();
+		}
+		
+		private static async Task SomeAction2(CancellationToken token)
+		{
+			Console.WriteLine("start delay...");
+			await Task.Delay(2000, token);
+			Console.WriteLine("end delay");
+			Console.WriteLine("Press any key to continue...");
+			Console.ReadKey();
+		}
+	}
 }
