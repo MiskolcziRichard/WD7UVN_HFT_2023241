@@ -158,13 +158,13 @@ namespace WD7UVN_HFT_2023241.Client
             response.EnsureSuccessStatusCode();
         }
 
-        public static IQueryable<Employee> WhoWorksInMaintainerTeam(int id)
+        public static List<Employee> WhoWorksInMaintainerTeam(int id)
         {
-            var item = default(IQueryable<Employee>);
+            var item = default(List<Employee>);
             HttpResponseMessage response = client.GetAsync("/api/WhoWorksInMaintainerTeam?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
-                item = response.Content.ReadAsAsync<IQueryable<Employee>>().GetAwaiter().GetResult();
+                item = response.Content.ReadAsAsync<List<Employee>>().GetAwaiter().GetResult();
             }
             else
             {
@@ -174,13 +174,13 @@ namespace WD7UVN_HFT_2023241.Client
             return item;
         }
 
-        public static IQueryable<Employee> GetSubordinates(int id)
+        public static List<Employee> GetSubordinates(int id)
         {
-            var item = default(IQueryable<Employee>);
+            var item = default(List<Employee>);
             HttpResponseMessage response = client.GetAsync("/api/GetSubordinates?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
-                item = response.Content.ReadAsAsync<IQueryable<Employee>>().GetAwaiter().GetResult();
+                item = response.Content.ReadAsAsync<List<Employee>>().GetAwaiter().GetResult();
             }
             else
             {
@@ -190,13 +190,13 @@ namespace WD7UVN_HFT_2023241.Client
             return item;
         }
 
-        public static IQueryable<Customer> WhoUsesService(int id)
+        public static List<Customer> WhoUsesService(int id)
         {
-            var  item = default(IQueryable<Customer>);
+            var  item = default(List<Customer>);
             HttpResponseMessage response = client.GetAsync("/api/WhoUsesService?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
-                item = response.Content.ReadAsAsync<IQueryable<Customer>>().GetAwaiter().GetResult();
+                item = response.Content.ReadAsAsync<List<Customer>>().GetAwaiter().GetResult();
             }
             else
             {
@@ -222,13 +222,13 @@ namespace WD7UVN_HFT_2023241.Client
             return item;
         }
 
-        public static IQueryable<Employee> WhoMaintainsService(int id)
+        public static List<Employee> WhoMaintainsService(int id)
         {
-            var item = default(IQueryable<Employee>);
+            var item = default(List<Employee>);
             HttpResponseMessage response = client.GetAsync("/api/WhoMaintainsService?id=" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
-                item = response.Content.ReadAsAsync<IQueryable<Employee>>().GetAwaiter().GetResult();
+                item = response.Content.ReadAsAsync<List<Employee>>().GetAwaiter().GetResult();
             }
             else
             {
@@ -238,6 +238,7 @@ namespace WD7UVN_HFT_2023241.Client
             return item;
         }
     }
+
     public class RestExceptionInfo
     {
         public RestExceptionInfo()
