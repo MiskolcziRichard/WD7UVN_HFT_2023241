@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,17 +12,7 @@ namespace WD7UVN_HFT_2023241.Client
     {
         private static HttpClient client;
 
-        public RestService(string baseurl = "https://localhost:5001", string pingableEndpoint = "/swagger")
-        {
-            bool isOk = false;
-            do
-            {
-                isOk = Ping(baseurl + pingableEndpoint);
-            } while (isOk == false);
-            Init(baseurl);
-        }
-
-        private bool Ping(string url)
+        private static bool Ping(string url)
         {
 			try
 			{
@@ -38,8 +28,21 @@ namespace WD7UVN_HFT_2023241.Client
             }
         }
 
-        private void Init(string baseurl)
+        public static void Init(string baseurl = "https://localhost:5001", string pingableEndpoint = "/swagger")
         {
+            int tries = 0;
+            bool isOk = false;
+            do
+            {
+                isOk = Ping(baseurl + pingableEndpoint);
+                tries++;
+            } while (isOk == false || tries > 5);
+
+            if (isOk == false)
+            {
+                throw new EndpointNotAvailableException("Endpoint is not available!");
+            }
+
 			HttpClientHandler handler = new HttpClientHandler();
 			handler.ClientCertificateOptions = ClientCertificateOption.Manual;
 			handler.ServerCertificateCustomValidationCallback = 

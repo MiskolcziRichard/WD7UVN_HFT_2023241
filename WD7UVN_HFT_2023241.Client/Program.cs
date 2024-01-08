@@ -9,6 +9,8 @@ namespace WD7UVN_HFT_2023241.Client
 	{
 		private static async Task Main(string[] args)
 		{
+			RestService.Init();
+
 			var commonConfig = new MenuConfig
 			{
 				Selector = "--> ",
