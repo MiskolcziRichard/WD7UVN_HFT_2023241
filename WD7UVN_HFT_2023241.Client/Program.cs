@@ -1,10 +1,19 @@
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ConsoleTools;
 
 namespace WD7UVN_HFT_2023241.Client
 {
+	public enum CRUDActions
+	{
+		GetAll,
+		GetById,
+		Create,
+		Update,
+		Delete
+	}
+
 	public class Program
 	{
 		private static async Task Main(string[] args)
@@ -34,15 +43,13 @@ namespace WD7UVN_HFT_2023241.Client
 				});
 			
 			var crudMenu = new ConsoleMenu(args, level: 1)
-				.Add("Sub_One", () => SomeAction("Sub_One"))
-				.Add("Sub_Five", async (cancellationToken) => await SomeAction2(cancellationToken))
-				.Add("Get all", ConsoleMenu.Close)
-				.Add("Get by id", ConsoleMenu.Close)
-				.Add("Create", ConsoleMenu.Close)
-				.Add("Update", ConsoleMenu.Close)
-				.Add("Delete", ConsoleMenu.Close)
-				.Add("Sub_Close", ConsoleMenu.Close)
-				.Add("Sub_Exit", () => Environment.Exit(0))
+				.Add("Get all", () => CRUD.TypeSelectorMenu(CRUDActions.GetAll))
+				.Add("Get by id", () => CRUD.TypeSelectorMenu(CRUDActions.GetById))
+				.Add("Create", () => CRUD.TypeSelectorMenu(CRUDActions.Create))
+				.Add("Update", () => CRUD.TypeSelectorMenu(CRUDActions.Update))
+				.Add("Delete", () => CRUD.TypeSelectorMenu(CRUDActions.Delete))
+				.Add("Back", ConsoleMenu.Close)
+				.Add("Exit", () => Environment.Exit(0))
 				.Configure(commonConfig)
 				.Configure(config =>
 				{
@@ -50,10 +57,8 @@ namespace WD7UVN_HFT_2023241.Client
 				});
 			
 			var menu = new ConsoleMenu(args, level: 0)
-				.Add("One", () => SomeAction("One"))
 				.Add("CRUD", crudMenu.Show)
 				.Add("Non-CRUD", nonCrudMenu.Show)
-				.Add("Close", ConsoleMenu.Close)
 				.Add("Exit", () => Environment.Exit(0))
 				.Configure(commonConfig)
 				.Configure(config =>
@@ -63,24 +68,8 @@ namespace WD7UVN_HFT_2023241.Client
 					config.EnableBreadcrumb = true;
 				});
 			
-			var token = new CancellationTokenSource(7000).Token;
+			var token = new CancellationTokenSource().Token;
 			await menu.ShowAsync(token);
-		}
-
-		private static void SomeAction(string text)
-		{
-			Console.WriteLine(text);
-			Console.WriteLine("Press any key to continue...");
-			Console.ReadKey();
-		}
-		
-		private static async Task SomeAction2(CancellationToken token)
-		{
-			Console.WriteLine("start delay...");
-			await Task.Delay(2000, token);
-			Console.WriteLine("end delay");
-			Console.WriteLine("Press any key to continue...");
-			Console.ReadKey();
 		}
 	}
 }
