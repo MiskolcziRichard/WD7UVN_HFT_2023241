@@ -247,4 +247,19 @@ namespace WD7UVN_HFT_2023241.Client
         }
         public string Msg { get; set; }
     }
+
+    public class EndpointNotAvailableException : Exception
+    {
+        public EndpointNotAvailableException() : base("The client could not reach the API endpoint.")
+        {
+        }
+    
+        public EndpointNotAvailableException(string message) : base(message)
+        {
+        }
+    
+        public EndpointNotAvailableException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
 }
