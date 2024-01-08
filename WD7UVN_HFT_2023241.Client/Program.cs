@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ConsoleTools;
@@ -19,15 +19,16 @@ namespace WD7UVN_HFT_2023241.Client
 			
 			var nonCrudMenu = new ConsoleMenu(args, level: 2)
 				.Add("Who maintains specified service?", () => NonCRUD.WhoMaintainsService())
-				.Add("Get employee's subordinates", ConsoleMenu.Close)
-				.Add("Get clients of specified service", ConsoleMenu.Close)
-				.Add("Get employees in specified maintainer team", ConsoleMenu.Close)
-				.Add("Get employee responsible for specified service", ConsoleMenu.Close)
-				.Add("Sub_Exit", () => Environment.Exit(0))
+				.Add("Get employee's subordinates", () => NonCRUD.GetSubordinates())
+				.Add("Get clients using a specified service", () => NonCRUD.WhoUsesService())
+				.Add("Get employees in specified maintainer team", () => NonCRUD.WhoWorksInMaintainerTeam())
+				.Add("Get employee responsible for specified service", () => NonCRUD.WhoIsResponsibleForService())
+				.Add("Back", ConsoleMenu.Close)
+				.Add("Exit", () => Environment.Exit(0))
 				.Configure(commonConfig)
 				.Configure(config =>
 				{
-					config.Title = "Submenu1";
+					config.Title = "Non-CRUD Operations";
 				});
 			
 			var crudMenu = new ConsoleMenu(args, level: 1)

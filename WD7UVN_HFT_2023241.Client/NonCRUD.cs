@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
 using ConsoleTools;
 using WD7UVN_HFT_2023241.Models;
 
@@ -10,8 +10,8 @@ namespace WD7UVN_HFT_2023241.Client
     {
         private static void RESTWhoMaintainsService(int id)
         {
-            IQueryable<Employee> res = RestService.WhoMaintainsService(id);
-            if (res.Count() != 0)
+            var res = RestService.WhoMaintainsService(id);
+            if (res != null)
             {
                 foreach (Employee e in res)
                 {
@@ -26,43 +26,24 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 Console.WriteLine("ERROR: No such database entry was found :/");
             }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
         }
-
         public static void WhoMaintainsService()
         {
-            var servicesMenu = new ConsoleMenu();
+            var menu = new ConsoleMenu();
             foreach (Service s in RestService.Get<Service>("/api/Service"))
             {
-                servicesMenu.Add($"{s.NAME}: {s.ID}", () => RESTWhoMaintainsService(s.ID));
+                menu.Add($"{s.NAME}: {s.ID}", () => RESTWhoMaintainsService(s.ID));
             }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
         }
 
-        public static void WhoUsesService()
+        private static void RESTWhoUsesService(int id)
         {
-            foreach (Service s in RestService.Get<Service>("/api/Service"))
-            {
-                Console.WriteLine("Service: " + s.NAME);
-                Console.WriteLine("ID: " + s.ID);
-            }
-
-            int id = 1;
-            bool flag = true;
-            while (flag)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    flag = false;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-
-            IQueryable<Customer> res = RestService.WhoUsesService(id);
-            if (res.Count() != 0)
+            var res = RestService.WhoUsesService(id);
+            if (res != null)
             {
                 foreach (Customer c in res)
                 {
@@ -76,32 +57,22 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 Console.WriteLine("No such database entry was found :/");
             }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
         }
-
-        public static void WhoIsResponsibleForService()
+        public static void WhoUsesService()
         {
+            var menu = new ConsoleMenu();
             foreach (Service s in RestService.Get<Service>("/api/Service"))
             {
-                Console.WriteLine("Service: " + s.NAME);
-                Console.WriteLine("ID: " + s.ID);
+                menu.Add($"{s.NAME}: {s.ID}", () => RESTWhoUsesService(s.ID));
             }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
+        }
 
-            int id = 1;
-            bool flag = true;
-            while (flag)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    flag = false;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-
+        private static void RESTWhoIsResponsibleForService(int id)
+        {
             Employee? res = RestService.WhoIsResponsibleForService(id);
             if (res != null)
             {
@@ -115,80 +86,28 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 Console.WriteLine("No such database entry was found :/");
             }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
+        }
+        public static void WhoIsResponsibleForService()
+        {
+            var menu = new ConsoleMenu();
+            foreach (Service s in RestService.Get<Service>("/api/Service"))
+            {
+                menu.Add($"{s.NAME}: {s.ID}", () => RESTWhoIsResponsibleForService(s.ID));
+            }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
         }
 
-        public static void GetSubordinates()
+        private static void RESTGetSubordinates(int id)
         {
-            foreach (Employee e in RestService.Get<Employee>("/api/Employee"))
-            {
-                Console.WriteLine("Name: " + e.NAME);
-                Console.WriteLine("ID: " + e.ID);
-            }
-
-            int id = 1;
-            bool flag = true;
-            while (flag)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    flag = false;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-
-            IQueryable<Employee> res = RestService.GetSubordinates(id);
-            if (res.Count() != 0)
+            var res = RestService.GetSubordinates(id);
+            if (res != null)
             {
                 foreach (Employee e in res)
                 {
-                    Console.WriteLine("Név: " + e.NAME);
-                    Console.WriteLine("ID: " + e.ID);
-                    Console.WriteLine("Email: " + e.EMAIL);
-                    Console.WriteLine("Phone: " + e.PHONE);
-                    Console.WriteLine("Maintainer team ID: " + e.MAINTAINER_ID);
-                }
-            }
-            else
-            {
-                Console.WriteLine("No such database entry was found :/");
-            }
-        }
-
-        public static void WhoWorksInMaintainerTeam()
-        {
-            foreach(MaintainerTeam m in RestService.Get<MaintainerTeam>("/api/MaintainerTeam"))
-            {
-                Console.WriteLine("Team name: " + m.NAME);
-                Console.WriteLine("ID: " + m.ID + "\n\n");
-            }
-
-            int id = 1;
-            bool flag = true;
-            while (flag)
-            {
-                try
-                {
-                    Console.Write("Your choice: ");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    flag = false;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number");
-                }
-            }
-
-            IQueryable<Employee> res = RestService.WhoWorksInMaintainerTeam(id);
-            if (res.Count() != 0)
-            {
-                foreach (Employee e in RestService.WhoWorksInMaintainerTeam(id))
-                {
-                    Console.WriteLine("Név: " + e.NAME);
+                    Console.WriteLine("Name: " + e.NAME);
                     Console.WriteLine("ID: " + e.ID);
                     Console.WriteLine("Email: " + e.EMAIL);
                     Console.WriteLine("Phone: " + e.PHONE);
@@ -199,6 +118,52 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 Console.WriteLine("No such database entry was found :/");
             }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
+        }
+        public static void GetSubordinates()
+        {
+            var menu = new ConsoleMenu();
+            foreach (Employee e in RestService.Get<Employee>("/api/Employee"))
+            {
+                menu.Add($"{e.NAME}: {e.ID}", () => RESTGetSubordinates(e.ID));
+            }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
+        }
+
+        private static void RESTWhoWorksInMaintainerTeam(int id)
+        {
+            var res = RestService.WhoWorksInMaintainerTeam(id);
+            if (res != null)
+            {
+                foreach (Employee e in res)
+                {
+                    Console.WriteLine("Name: " + e.NAME);
+                    Console.WriteLine("ID: " + e.ID);
+                    Console.WriteLine("Email: " + e.EMAIL);
+                    Console.WriteLine("Phone: " + e.PHONE);
+                    Console.WriteLine("Manager's ID: " + e.MANAGER_ID);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No such database entry was found :/");
+            }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
+        }
+        public static void WhoWorksInMaintainerTeam()
+        {
+            var menu = new ConsoleMenu();
+            foreach(MaintainerTeam m in RestService.Get<MaintainerTeam>("/api/MaintainerTeam"))
+            {
+                Console.WriteLine("Team name: " + m.NAME);
+                Console.WriteLine("ID: " + m.ID + "\n\n");
+                menu.Add($"{m.NAME}: {m.ID}", () => RESTWhoWorksInMaintainerTeam(m.ID));
+            }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
         }
     }
 }
