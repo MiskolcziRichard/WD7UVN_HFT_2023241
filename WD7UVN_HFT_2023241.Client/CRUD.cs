@@ -183,7 +183,6 @@ namespace WD7UVN_HFT_2023241.Client
                 menu.Add($"{c.NAME}: {c.ID}", () => RESTEmployee(c.ID));
             }
             menu.Add("Back", ConsoleMenu.Close);
-            menu.Add("Exit", () => Environment.Exit(0));
             menu.Show();
         }
 
@@ -324,208 +323,171 @@ namespace WD7UVN_HFT_2023241.Client
     {
         public static void Customer()
         {
-            while (true)
+            try
             {
-                try
+                Console.Write("ID (integer): ");
+                int id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Email (text): ");
+                string email = Console.ReadLine();
+
+                Console.Write("Phone (text): ");
+                string phone = Console.ReadLine();
+
+                Console.Write("ServiceID (integer): ");
+                int service_id = Convert.ToInt32(Console.ReadLine());
+
+                Customer c = new Customer()
                 {
-                    Console.Write("ID (integer): ");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                    ID = id,
+                    NAME = name,
+                    EMAIL = email,
+                    PHONE = phone,
+                    SERVICE_ID = service_id
+                };
 
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
-
-                    Console.Write("Email (text): ");
-                    string email = Console.ReadLine();
-
-                    Console.Write("Phone (text): ");
-                    string phone = Console.ReadLine();
-
-                    Console.Write("ServiceID (integer): ");
-                    int service_id = Convert.ToInt32(Console.ReadLine());
-
-                    Customer c = new Customer()
-                    {
-                        ID = id,
-                        NAME = name,
-                        EMAIL = email,
-                        PHONE = phone,
-                        SERVICE_ID = service_id
-                    };
-
-                    RestService.Put<Customer>(c, "/api/Customer/");
-
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Put<Customer>(c, "/api/Customer/");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
             }
         }
 
         public static void Employee()
         {
-
-            while (true)
+            try
             {
-                try
+                Console.Write("ID (integer): ");
+                int id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Email (text): ");
+                string email = Console.ReadLine();
+
+                Console.Write("Phone (text): ");
+                string phone = Console.ReadLine();
+
+                Console.Write("Team ID (integer): ");
+                int maintainer_id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Manager's ID (integer): ");
+                int manager_id = Convert.ToInt32(Console.ReadLine());
+
+                Employee c = new Employee()
                 {
-                    Console.Write("ID (integer): ");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                    ID = id,
+                    NAME = name,
+                    EMAIL = email,
+                    PHONE = phone,
+                    MAINTAINER_ID = maintainer_id,
+                    MANAGER_ID = manager_id
+                };
 
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
-
-                    Console.Write("Email (text): ");
-                    string email = Console.ReadLine();
-
-                    Console.Write("Phone (text): ");
-                    string phone = Console.ReadLine();
-
-                    Console.Write("Team ID (integer): ");
-                    int maintainer_id = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Manager's ID (integer): ");
-                    int manager_id = Convert.ToInt32(Console.ReadLine());
-
-                    Employee c = new Employee()
-                    {
-                        ID = id,
-                        NAME = name,
-                        EMAIL = email,
-                        PHONE = phone,
-                        MAINTAINER_ID = maintainer_id,
-                        MANAGER_ID = manager_id
-                    };
-
-                    RestService.Put<Employee>(c, "/api/Employee/");
-
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Put<Employee>(c, "/api/Employee/");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
             }
         }
 
         public static void Service()
         {
-
-            while (true)
+            try
             {
-                try
+                Console.Write("ID (integer): ");
+                int id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Maintainer team's ID (integer): ");
+                int maintainer_id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Version (string): ");
+                string version = Console.ReadLine();
+
+                Console.Write("IP (text): ");
+                string ip = Console.ReadLine();
+
+                Console.Write("Port (integer): ");
+                int port = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Service account (text): ");
+                string account = Console.ReadLine();
+
+                Console.Write("Service domain (text): ");
+                string domain = Console.ReadLine();
+
+                Console.Write("Note(s) (text): ");
+                string notes = Console.ReadLine();
+
+                Service c = new Service()
                 {
-                    Console.Write("ID (integer): ");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                    ID = id,
+                    NAME = name,
+                    MAINTAINER_ID = maintainer_id,
+                    PORT = port,
+                    IP = ip,
+                    SERVICE_DOMAIN = domain,
+                    ACCOUNT = account,
+                    NOTES = notes,
+                    VERSION = version
+                };
 
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
-
-                    Console.Write("Maintainer team's ID (integer): ");
-                    int maintainer_id = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Version (string): ");
-                    string version = Console.ReadLine();
-
-                    Console.Write("IP (text): ");
-                    string ip = Console.ReadLine();
-
-                    Console.Write("Port (integer): ");
-                    int port = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Service account (text): ");
-                    string account = Console.ReadLine();
-
-                    Console.Write("Service domain (text): ");
-                    string domain = Console.ReadLine();
-
-                    Console.Write("Note(s) (text): ");
-                    string notes = Console.ReadLine();
-
-                    Service c = new Service()
-                    {
-                        ID = id,
-                        NAME = name,
-                        MAINTAINER_ID = maintainer_id,
-                        PORT = port,
-                        IP = ip,
-                        SERVICE_DOMAIN = domain,
-                        ACCOUNT = account,
-                        NOTES = notes,
-                        VERSION = version
-                    };
-
-                    RestService.Put<Service>(c, "/api/Service/");
-
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Put<Service>(c, "/api/Service/");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
             }
         }   
 
         public static void MaintainerTeam()
         {
-
-            while (true)
+            try
             {
-                try
+                Console.Write("ID (integer): ");
+                int id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Email (text): ");
+                string email = Console.ReadLine();
+
+                Console.Write("Leader's ID (integer): ");
+                int leader_id = Convert.ToInt32(Console.ReadLine());
+
+                MaintainerTeam c = new MaintainerTeam()
                 {
-                    Console.Write("ID (integer): ");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                    ID = id,
+                    NAME = name,
+                    LEADER_ID = leader_id,
+                    EMAIL = email
+                };
 
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
-
-                    Console.Write("Email (text): ");
-                    string email = Console.ReadLine();
-
-                    Console.Write("Leader's ID (integer): ");
-                    int leader_id = Convert.ToInt32(Console.ReadLine());
-
-                    MaintainerTeam c = new MaintainerTeam()
-                    {
-                        ID = id,
-                        NAME = name,
-                        LEADER_ID = leader_id,
-                        EMAIL = email
-                    };
-
-                    RestService.Put<MaintainerTeam>(c, "/api/MaintainerTeam/");
-
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Put<MaintainerTeam>(c, "/api/MaintainerTeam/");
             }
-        } 
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
+            }
+
+        }
     }
 
     public class Update
     {
-        public static void Customer()
+        private static void RESTCustomer(int id)
         {
-            int input;
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Enter a number for the customer's ID: ");
-                    input = Convert.ToInt32(Console.ReadLine());
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number.");
-                }
-            }
-
-            Customer c = RestService.Get<Customer>(input, "/api/Customer/");
+            Customer c = RestService.Get<Customer>(id, "/api/Customer/");
 
             Console.WriteLine("Name: " + c.NAME);
             Console.WriteLine("Email: " + c.EMAIL);
@@ -552,7 +514,7 @@ namespace WD7UVN_HFT_2023241.Client
 
                     c = new Customer()
                     {
-                        ID = input,
+                        ID = id,
                         NAME = name,
                         EMAIL = email,
                         PHONE = phone,
@@ -568,29 +530,22 @@ namespace WD7UVN_HFT_2023241.Client
                 }
             }
         }
-
-        public static void Employee()
+        public static void Customer()
         {
-
-            int input;
-            while (true)
+            var menu = new ConsoleMenu();
+            foreach (Customer c in RestService.Get<Customer>("/api/Customer/"))
             {
-                try
-                {
-                    Console.Write("Enter a number for the employee's ID: ");
-                    input = Convert.ToInt32(Console.ReadLine());
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number.");
-                }
+                menu.Add($"{c.NAME}: {c.ID}", () => RESTCustomer(c.ID));
             }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
+        }
 
-            Employee c = RestService.Get<Employee>(input, "/api/Employee/");
+        private static void RESTEmployee(int id)
+        {
+            Employee c = RestService.Get<Employee>(id, "/api/Employee/");
 
             Console.WriteLine("Name: " + c.NAME);
-            Console.WriteLine("ID: " + c.ID);
             Console.WriteLine("Email: " + c.EMAIL);
             Console.WriteLine("Phone: " + c.PHONE);
             Console.WriteLine("Maintainer team's ID: " + c.MAINTAINER_ID);
@@ -619,7 +574,7 @@ namespace WD7UVN_HFT_2023241.Client
 
                     c = new Employee()
                     {
-                        ID = input,
+                        ID = id,
                         NAME = name,
                         EMAIL = email,
                         PHONE = phone,
@@ -636,26 +591,20 @@ namespace WD7UVN_HFT_2023241.Client
                 }
             }
         }
-
-        public static void Service()
+        public static void Employee()
         {
-
-            int input;
-            while (true)
+            var menu = new ConsoleMenu();
+            foreach (Employee c in RestService.Get<Employee>("/api/Employee/"))
             {
-                try
-                {
-                    Console.Write("Enter a number for the service's ID: ");
-                    input = Convert.ToInt32(Console.ReadLine());
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number.");
-                }
+                menu.Add($"{c.NAME}: {c.ID}", () => RESTEmployee(c.ID));
             }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
+        }
 
-            Service c = RestService.Get<Service>(input, "/api/Service/");
+        private static void RESTService(int id)
+        {
+            Service c = RestService.Get<Service>(id, "/api/Service/");
 
             Console.WriteLine("Name: " + c.NAME);
             Console.WriteLine("ID: " + c.ID);
@@ -666,6 +615,7 @@ namespace WD7UVN_HFT_2023241.Client
             Console.WriteLine("Service domain: " + c.SERVICE_DOMAIN);
             Console.WriteLine("Version: " + c.VERSION);
             Console.WriteLine("Maintainer team's ID: " + c.MAINTAINER_ID);
+
             Console.WriteLine("Now you can modify these fields, except for the ID.");
 
             while (true)
@@ -698,7 +648,7 @@ namespace WD7UVN_HFT_2023241.Client
 
                     c = new Service()
                     {
-                        ID = input,
+                        ID = id,
                         NAME = name,
                         MAINTAINER_ID = maintainer_id,
                         PORT = port,
@@ -717,27 +667,21 @@ namespace WD7UVN_HFT_2023241.Client
                     Console.WriteLine("Invalid format!");
                 }
             }
+        }
+        public static void Service()
+        {
+            var menu = new ConsoleMenu();
+            foreach (Service c in RestService.Get<Service>("/api/Service/"))
+            {
+                menu.Add($"{c.NAME}: {c.ID}", () => RESTService(c.ID));
+            }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
         }   
 
-        public static void MaintainerTeam()
+        private static void RESTMaintainerTeam(int id)
         {
-
-            int input;
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Enter a number for the service's ID: ");
-                    input = Convert.ToInt32(Console.ReadLine());
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You must enter a number.");
-                }
-            }
-
-            MaintainerTeam c = RestService.Get<MaintainerTeam>(input, "/api/MaintainerTeam/");
+            MaintainerTeam c = RestService.Get<MaintainerTeam>(id, "/api/MaintainerTeam/");
 
             Console.WriteLine("Name: " + c.NAME);
             Console.WriteLine("ID: " + c.ID);
@@ -761,7 +705,7 @@ namespace WD7UVN_HFT_2023241.Client
 
                     c = new MaintainerTeam()
                     {
-                        ID = input,
+                        ID = id,
                         NAME = name,
                         LEADER_ID = leader_id,
                         EMAIL = email
@@ -775,6 +719,16 @@ namespace WD7UVN_HFT_2023241.Client
                     Console.WriteLine("Invalid format!");
                 }
             }
+        }
+        public static void MaintainerTeam()
+        {
+            var menu = new ConsoleMenu();
+            foreach (MaintainerTeam c in RestService.Get<MaintainerTeam>("/api/MaintainerTeam/"))
+            {
+                menu.Add($"{c.NAME}: {c.ID}", () => RESTMaintainerTeam(c.ID));
+            }
+            menu.Add("Back", ConsoleMenu.Close);
+            menu.Show();
         } 
     }
 
@@ -786,11 +740,15 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 RestService.Delete(id, "/api/Customer/");
                 Console.WriteLine("Successfully deleted Customer with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Uh-oh...");
+                Console.WriteLine("The following error occured:");
                 Console.WriteLine(e.Message);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
         }
         public static void Customer()
@@ -810,11 +768,15 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 RestService.Delete(id, "/api/Employee/");
                 Console.WriteLine("Successfully deleted Employee with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Uh-oh...");
+                Console.WriteLine("The following error occured:");
                 Console.WriteLine(e.Message);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
         }
         public static void Employee()
@@ -834,11 +796,15 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 RestService.Delete(id, "/api/Service/");
                 Console.WriteLine("Successfully deleted Service with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Uh-oh...");
+                Console.WriteLine("The following error occured:");
                 Console.WriteLine(e.Message);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
         }   
         public static void Service()
@@ -858,11 +824,15 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 RestService.Delete(id, "/api/MaintainerTeam/");
                 Console.WriteLine("Successfully deleted MaintainerTeam with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Uh-oh...");
+                Console.WriteLine("The following error occured:");
                 Console.WriteLine(e.Message);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
         } 
         public static void MaintainerTeam()
