@@ -55,8 +55,9 @@ namespace WD7UVN_HFT_2023241.Endpoint
             LogicServices.CRUDOperations.UpdateService(e);
         }
 
-        [HttpDelete()]
-        public void DeleteService([FromBody] int id)
+        //HttpClient does not support sending data in the body of a DELETE request. Instead, we can send the data in the URL like with a GET request.
+        [HttpDelete("{id}")]
+        public void DeleteService(int id)
         {
             LogicServices.CRUDOperations.DeleteService(id);
         }
