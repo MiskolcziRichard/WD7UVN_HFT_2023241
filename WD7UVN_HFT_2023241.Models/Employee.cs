@@ -13,11 +13,8 @@ namespace WD7UVN_HFT_2023241.Models
         [Key]
         public int ID { get; set; }
         [Required]
-        [StringLength(240)]
         public string NAME { get; set; }
-        [StringLength(240)]
         public string EMAIL { get; set; }
-        [StringLength(240)]
         public string PHONE { get; set; }
         [ForeignKey(nameof(MaintainerTeam))]
         public int MAINTAINER_ID { get; set; }

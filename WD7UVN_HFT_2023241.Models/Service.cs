@@ -13,15 +13,10 @@ namespace WD7UVN_HFT_2023241.Models
         [Required]
         public string NAME { get; set; }
         public string VERSION { get; set; }
-        [StringLength(240)]
         public string ACCOUNT { get; set; }
-        [StringLength(240)]
         public string NOTES { get; set; }
-        [StringLength(240)]
         public string SERVICE_DOMAIN { get; set; }
-        [StringLength(240)]
         public string IP { get; set; }
-        [Range(0, 65535)]
         public int PORT { get; set; }
     }
 }
