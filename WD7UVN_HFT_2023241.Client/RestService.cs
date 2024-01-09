@@ -36,7 +36,7 @@ namespace WD7UVN_HFT_2023241.Client
             {
                 isOk = Ping(baseurl + pingableEndpoint);
                 tries++;
-            } while (isOk == false || tries > 5);
+            } while (isOk == false && tries < 5);
 
             if (isOk == false)
             {
