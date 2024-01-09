@@ -20,13 +20,13 @@ namespace WD7UVN_HFT_2023241.Client
 		{
 			RestService.Init();
 
-			var commonConfig = new MenuConfig
-			{
-				Selector = "--> ",
-				EnableFilter = true,
-				EnableBreadcrumb = true,
-				WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles)),
-			};
+		//	var commonConfig = new MenuConfig
+		//	{
+		//		Selector = "--> ",
+		//		EnableFilter = true,
+		//		EnableBreadcrumb = true,
+		//		WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles)),
+		//	};
 			
 			var nonCrudMenu = new ConsoleMenu(args, level: 2)
 				.Add("Who maintains specified service?", () => NonCRUD.WhoMaintainsService())
@@ -36,7 +36,7 @@ namespace WD7UVN_HFT_2023241.Client
 				.Add("Get employee responsible for specified service", () => NonCRUD.WhoIsResponsibleForService())
 				.Add("Back", ConsoleMenu.Close)
 				.Add("Exit", () => Environment.Exit(0))
-				.Configure(commonConfig)
+				//.Configure(commonConfig)
 				.Configure(config =>
 				{
 					config.Title = "Non-CRUD Operations";
@@ -50,7 +50,7 @@ namespace WD7UVN_HFT_2023241.Client
 				.Add("Delete", () => CRUD.TypeSelectorMenu(CRUDActions.Delete))
 				.Add("Back", ConsoleMenu.Close)
 				.Add("Exit", () => Environment.Exit(0))
-				.Configure(commonConfig)
+				//.Configure(commonConfig)
 				.Configure(config =>
 				{
 					config.Title = "Tables";
@@ -60,7 +60,7 @@ namespace WD7UVN_HFT_2023241.Client
 				.Add("CRUD", crudMenu.Show)
 				.Add("Non-CRUD", nonCrudMenu.Show)
 				.Add("Exit", () => Environment.Exit(0))
-				.Configure(commonConfig)
+				//.Configure(commonConfig)
 				.Configure(config =>
 				{
 					config.Title = "Main menu";
