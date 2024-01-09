@@ -17,7 +17,7 @@ namespace WD7UVN_HFT_2023241.Client
             switch (action)
             {
                 case CRUDActions.GetAll:
-                    method = View.Display;
+                    method = View.DisplayAll;
                     break;
                 case CRUDActions.GetById:
                     method = View.Display;
@@ -191,6 +191,7 @@ namespace WD7UVN_HFT_2023241.Client
                     {
                         Console.WriteLine(p.Name + ": " + p.GetValue(item));
                     }
+                    Console.WriteLine();
                 }
             }
             else
