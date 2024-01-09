@@ -395,7 +395,7 @@ namespace WD7UVN_HFT_2023241.Client
 
                 RestService.Put<Employee>(c, "/api/Employee/");
 
-                Console.WriteLine("\nSuccessfully created Customer with ID {0}", id);
+                Console.WriteLine("\nSuccessfully created Employee with ID {0}", id);
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
             }
@@ -451,7 +451,7 @@ namespace WD7UVN_HFT_2023241.Client
 
                 RestService.Put<Service>(c, "/api/Service/");
 
-                Console.WriteLine("\nSuccessfully created Customer with ID {0}", id);
+                Console.WriteLine("\nSuccessfully created Service with ID {0}", id);
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
             }
@@ -487,7 +487,7 @@ namespace WD7UVN_HFT_2023241.Client
 
                 RestService.Put<MaintainerTeam>(c, "/api/MaintainerTeam/");
 
-                Console.WriteLine("\nSuccessfully created Customer with ID {0}", id);
+                Console.WriteLine("\nSuccessfully created Team with ID {0}", id);
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
             }
