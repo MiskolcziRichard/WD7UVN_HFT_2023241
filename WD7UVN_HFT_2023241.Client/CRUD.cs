@@ -536,6 +536,10 @@ namespace WD7UVN_HFT_2023241.Client
                 };
 
                 RestService.Post<Customer>(c, "/api/Customer/");
+
+                Console.WriteLine("\nSuccessfully updated Customer with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (FormatException)
             {
@@ -593,6 +597,10 @@ namespace WD7UVN_HFT_2023241.Client
                 };
 
                 RestService.Post<Employee>(c, "/api/Employee/");
+
+                Console.WriteLine("\nSuccessfully updated Employee with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (FormatException)
             {
@@ -666,6 +674,10 @@ namespace WD7UVN_HFT_2023241.Client
                 };
 
                 RestService.Post<Service>(c, "/api/Service/");
+
+                Console.WriteLine("\nSuccessfully updated Service with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (FormatException)
             {
@@ -714,6 +726,10 @@ namespace WD7UVN_HFT_2023241.Client
                 };
 
                 RestService.Post<MaintainerTeam>(c, "/api/MaintainerTeam/");
+
+                Console.WriteLine("\nSuccessfully updated Team with ID {0}", id);
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (FormatException)
             {
