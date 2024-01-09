@@ -18,7 +18,15 @@ namespace WD7UVN_HFT_2023241.Client
 	{
 		private static async Task Main(string[] args)
 		{
-			RestService.Init();
+			try
+			{
+				RestService.Init();
+			}
+			catch (EndpointNotAvailableException e)
+			{
+				Console.WriteLine(e.Message);
+				Environment.Exit(1);
+			}
 
 		//	var commonConfig = new MenuConfig
 		//	{
