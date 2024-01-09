@@ -21,7 +21,7 @@ namespace WD7UVN_HFT_2023241.Models
         public string SERVICE_DOMAIN { get; set; }
         [StringLength(240)]
         public string IP { get; set; }
-        [StringLength(240)]
+        [Range(0, 65535)]
         public int PORT { get; set; }
     }
 }
