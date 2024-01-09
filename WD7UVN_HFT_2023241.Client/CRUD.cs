@@ -512,38 +512,34 @@ namespace WD7UVN_HFT_2023241.Client
 
             Console.WriteLine("Now you can modify these fields, except for the ID.");
 
-            while (true)
+            try
             {
-                try
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Email (text): ");
+                string email = Console.ReadLine();
+
+                Console.Write("Phone (text): ");
+                string phone = Console.ReadLine();
+
+                Console.Write("ServiceID (integer): ");
+                int service_id = Convert.ToInt32(Console.ReadLine());
+
+                c = new Customer()
                 {
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
+                    ID = id,
+                    NAME = name,
+                    EMAIL = email,
+                    PHONE = phone,
+                    SERVICE_ID = service_id
+                };
 
-                    Console.Write("Email (text): ");
-                    string email = Console.ReadLine();
-
-                    Console.Write("Phone (text): ");
-                    string phone = Console.ReadLine();
-
-                    Console.Write("ServiceID (integer): ");
-                    int service_id = Convert.ToInt32(Console.ReadLine());
-
-                    c = new Customer()
-                    {
-                        ID = id,
-                        NAME = name,
-                        EMAIL = email,
-                        PHONE = phone,
-                        SERVICE_ID = service_id
-                    };
-
-                    RestService.Post<Customer>(c, "/api/Customer/");
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Post<Customer>(c, "/api/Customer/");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
             }
         }
         public static void Customer()
@@ -569,42 +565,38 @@ namespace WD7UVN_HFT_2023241.Client
 
             Console.WriteLine("Now you can modify these fields, except for the ID.");
 
-            while (true)
+            try
             {
-                try
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Email (text): ");
+                string email = Console.ReadLine();
+
+                Console.Write("Phone (text): ");
+                string phone = Console.ReadLine();
+
+                Console.Write("Team ID (integer): ");
+                int maintainer_id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Manager's ID (integer): ");
+                int manager_id = Convert.ToInt32(Console.ReadLine());
+
+                c = new Employee()
                 {
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
+                    ID = id,
+                    NAME = name,
+                    EMAIL = email,
+                    PHONE = phone,
+                    MANAGER_ID = manager_id,
+                    MAINTAINER_ID = maintainer_id
+                };
 
-                    Console.Write("Email (text): ");
-                    string email = Console.ReadLine();
-
-                    Console.Write("Phone (text): ");
-                    string phone = Console.ReadLine();
-
-                    Console.Write("Team ID (integer): ");
-                    int maintainer_id = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Manager's ID (integer): ");
-                    int manager_id = Convert.ToInt32(Console.ReadLine());
-
-                    c = new Employee()
-                    {
-                        ID = id,
-                        NAME = name,
-                        EMAIL = email,
-                        PHONE = phone,
-                        MANAGER_ID = manager_id,
-                        MAINTAINER_ID = maintainer_id
-                    };
-
-                    RestService.Post<Employee>(c, "/api/Employee/");
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Post<Employee>(c, "/api/Employee/");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
             }
         }
         public static void Employee()
@@ -634,54 +626,50 @@ namespace WD7UVN_HFT_2023241.Client
 
             Console.WriteLine("Now you can modify these fields, except for the ID.");
 
-            while (true)
+            try
             {
-                try
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Maintainer team's ID (integer): ");
+                int maintainer_id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Version (string): ");
+                string version = Console.ReadLine();
+
+                Console.Write("IP (text): ");
+                string ip = Console.ReadLine();
+
+                Console.Write("Port (integer): ");
+                int port = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Service account (text): ");
+                string account = Console.ReadLine();
+
+                Console.Write("Service domain (text): ");
+                string domain = Console.ReadLine();
+
+                Console.Write("Note(s) (text): ");
+                string notes = Console.ReadLine();
+
+                c = new Service()
                 {
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
+                    ID = id,
+                    NAME = name,
+                    MAINTAINER_ID = maintainer_id,
+                    PORT = port,
+                    IP = ip,
+                    SERVICE_DOMAIN = domain,
+                    ACCOUNT = account,
+                    NOTES = notes,
+                    VERSION = version
+                };
 
-                    Console.Write("Maintainer team's ID (integer): ");
-                    int maintainer_id = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Version (string): ");
-                    string version = Console.ReadLine();
-
-                    Console.Write("IP (text): ");
-                    string ip = Console.ReadLine();
-
-                    Console.Write("Port (integer): ");
-                    int port = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Service account (text): ");
-                    string account = Console.ReadLine();
-
-                    Console.Write("Service domain (text): ");
-                    string domain = Console.ReadLine();
-
-                    Console.Write("Note(s) (text): ");
-                    string notes = Console.ReadLine();
-
-                    c = new Service()
-                    {
-                        ID = id,
-                        NAME = name,
-                        MAINTAINER_ID = maintainer_id,
-                        PORT = port,
-                        IP = ip,
-                        SERVICE_DOMAIN = domain,
-                        ACCOUNT = account,
-                        NOTES = notes,
-                        VERSION = version
-                    };
-
-                    RestService.Post<Service>(c, "/api/Service/");
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Post<Service>(c, "/api/Service/");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
             }
         }
         public static void Service()
@@ -706,34 +694,30 @@ namespace WD7UVN_HFT_2023241.Client
 
             Console.WriteLine("Now you can modify these fields, except for the ID.");
 
-            while (true)
+            try
             {
-                try
+                Console.Write("Name (text): ");
+                string name = Console.ReadLine();
+
+                Console.Write("Email (text): ");
+                string email = Console.ReadLine();
+
+                Console.Write("Leader's ID (integer): ");
+                int leader_id = Convert.ToInt32(Console.ReadLine());
+
+                c = new MaintainerTeam()
                 {
-                    Console.Write("Name (text): ");
-                    string name = Console.ReadLine();
+                    ID = id,
+                    NAME = name,
+                    LEADER_ID = leader_id,
+                    EMAIL = email
+                };
 
-                    Console.Write("Email (text): ");
-                    string email = Console.ReadLine();
-
-                    Console.Write("Leader's ID (integer): ");
-                    int leader_id = Convert.ToInt32(Console.ReadLine());
-
-                    c = new MaintainerTeam()
-                    {
-                        ID = id,
-                        NAME = name,
-                        LEADER_ID = leader_id,
-                        EMAIL = email
-                    };
-
-                    RestService.Post<MaintainerTeam>(c, "/api/MaintainerTeam/");
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid format!");
-                }
+                RestService.Post<MaintainerTeam>(c, "/api/MaintainerTeam/");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format!");
             }
         }
         public static void MaintainerTeam()
