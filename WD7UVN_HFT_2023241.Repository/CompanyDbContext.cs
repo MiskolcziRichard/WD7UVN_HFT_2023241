@@ -88,6 +88,7 @@ namespace WD7UVN_HFT_2023241.Repository
 					SERVICE_DOMAIN = "admin.exchange.intranet.szemedfenye.hu",
 					PORT = 443,
 					IP = "10.42.567.3",
+					VERSION = "2016",
 					MAINTAINER_ID = 1
 				},
 				
@@ -99,7 +100,8 @@ namespace WD7UVN_HFT_2023241.Repository
 					SERVICE_DOMAIN = "conf.ldap.intranet.dobox.hu",
 					PORT = 636,
 					IP = "66.254.114.41",
-					MAINTAINER_ID = 2
+					MAINTAINER_ID = 2,
+					VERSION = "2.4.57"
 				}
             );
 

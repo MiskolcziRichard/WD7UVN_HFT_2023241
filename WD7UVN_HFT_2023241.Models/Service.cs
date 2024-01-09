@@ -12,7 +12,7 @@ namespace WD7UVN_HFT_2023241.Models
         public int MAINTAINER_ID { get; set; }
         [Required]
         public string NAME { get; set; }
-        public int VERSION { get; set; }
+        public string VERSION { get; set; }
         [StringLength(240)]
         public string ACCOUNT { get; set; }
         [StringLength(240)]

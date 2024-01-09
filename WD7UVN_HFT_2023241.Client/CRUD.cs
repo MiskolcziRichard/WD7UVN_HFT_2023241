@@ -425,8 +425,8 @@ namespace WD7UVN_HFT_2023241.Client
                     Console.Write("Maintainer team's ID (integer): ");
                     int maintainer_id = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Write("Version (integer): ");
-                    int version = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Version (string): ");
+                    string version = Console.ReadLine();
 
                     Console.Write("IP (text): ");
                     string ip = Console.ReadLine();
@@ -678,8 +678,8 @@ namespace WD7UVN_HFT_2023241.Client
                     Console.Write("Maintainer team's ID (integer): ");
                     int maintainer_id = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Write("Version (integer): ");
-                    int version = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Version (string): ");
+                    string version = Console.ReadLine();
 
                     Console.Write("IP (text): ");
                     string ip = Console.ReadLine();
