@@ -1,0 +1,8 @@
+#+TITLE: Haladó Fejlesztési Technikák - Féléves feladat
+#+AUTHOR: Miskolczi Richárd
+
+* Endpoint
+ASP.NET webalkalmazás API endpoint-okkal, CRUD és non-CRUD adatbázis műveletekhez
+
+* Kliens
+Konzolos kliens alkalmazás a webes adatbázis kezelésére
