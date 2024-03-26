@@ -2,9 +2,10 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using ConsoleTools;
+using WD7UVN_HFT_2023241.Client.Shared;
 using WD7UVN_HFT_2023241.Models;
 
-namespace WD7UVN_HFT_2023241.Client
+namespace WD7UVN_HFT_2023241.Client.TUI
 {
     public class NonCRUD 
     {
