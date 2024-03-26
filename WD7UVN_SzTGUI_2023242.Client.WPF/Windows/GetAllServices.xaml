@@ -54,7 +54,6 @@
 
                             <Label Grid.Row="8" Grid.Column="0" Content="Maintainer Team ID:" />
                             <Label Grid.Row="8" Grid.Column="1" Content="{Binding MAINTAINER_ID}" />
-
                         </Grid>
                     </Border>
                 </DataTemplate>
