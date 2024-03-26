@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ConsoleTools;
-using WD7UVN_HFT_2023241.Client.Shared;
 
 namespace WD7UVN_HFT_2023241.Client.TUI
 {

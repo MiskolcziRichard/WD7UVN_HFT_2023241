@@ -5,8 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WD7UVN_SzTGUI_2023242.Client.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Company database manager" Height="450" Width="900">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding NAME}" Margin="5px"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="1" Margin="5" Content="Expand all" Click="ExpandAllServices"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding NAME}" Margin="5px"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="1" Margin="5" Content="Expand all" Click="ExpandAllCustomers" />
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding NAME}" Margin="5px"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="1" Margin="5" Content="Expand all" Click="ExpandAllClients" />
+        </Grid>
+
+        <Grid Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding NAME}" Margin="5px"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="1" Margin="5" Content="Expand all" Click="ExpandAllTeams" />
+        </Grid>
+
 
     </Grid>
 </Window>
