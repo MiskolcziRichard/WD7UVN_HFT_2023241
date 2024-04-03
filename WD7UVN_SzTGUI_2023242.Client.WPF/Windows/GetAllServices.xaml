@@ -8,7 +8,7 @@
         Title="GetAllServices" Height="550" Width="350">
 
     <Grid>
-        <ListBox>
+        <ListBox ItemsSource="{Binding Services}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Gray" BorderThickness="1">
