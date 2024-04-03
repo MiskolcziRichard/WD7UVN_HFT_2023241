@@ -322,7 +322,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
 
         private async Task Init()
         {
-            items = await rest.GetAsync<T>(typeof(T).Name);
+            items = await rest.GetAsync<T>("api/" + typeof(T).Name);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 

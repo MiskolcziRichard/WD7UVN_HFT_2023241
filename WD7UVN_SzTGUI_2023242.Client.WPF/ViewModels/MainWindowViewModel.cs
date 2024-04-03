@@ -33,10 +33,10 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Services = new RestCollection<Service>("http://localhost:62005/", "Service", "hub");
-                Employees = new RestCollection<Employee>("http://localhost:62005/", "Employee", "hub");
-                MaintainerTeams = new RestCollection<MaintainerTeam>("http://localhost:62005/", "MaintainerTeam", "hub");
-                Customers = new RestCollection<Customer>("http://localhost:62005/", "Customer", "hub");
+                Services = new RestCollection<Service>("http://localhost:5000/", "api/Service");
+                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/Employee");
+                MaintainerTeams = new RestCollection<MaintainerTeam>("http://localhost:5000/", "api/MaintainerTeam");
+                Customers = new RestCollection<Customer>("http://localhost:5000/", "api/Customer");
             }
         }
     }
