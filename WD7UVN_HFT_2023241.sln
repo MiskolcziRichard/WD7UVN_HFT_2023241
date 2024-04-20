@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WD7UVN_HFT_2023241.Client.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WD7UVN_SzTGUI_2023242.Client.WPF", "WD7UVN_SzTGUI_2023242.Client.WPF\WD7UVN_SzTGUI_2023242.Client.WPF.csproj", "{0A994D03-066F-43E7-872E-4D239FC6F764}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WD7UVN_SzTGUI_2023242.Client.JS", "WD7UVN_SzTGUI_2023242.Client.JS\WD7UVN_SzTGUI_2023242.Client.JS.csproj", "{520CF5EB-5E09-40A1-AD92-1D1C498C643B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{0A994D03-066F-43E7-872E-4D239FC6F764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A994D03-066F-43E7-872E-4D239FC6F764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A994D03-066F-43E7-872E-4D239FC6F764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520CF5EB-5E09-40A1-AD92-1D1C498C643B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520CF5EB-5E09-40A1-AD92-1D1C498C643B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520CF5EB-5E09-40A1-AD92-1D1C498C643B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520CF5EB-5E09-40A1-AD92-1D1C498C643B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
