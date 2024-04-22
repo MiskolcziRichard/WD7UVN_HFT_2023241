@@ -52,7 +52,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
                 .AllowCredentials()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:25415"));
+                .WithOrigins("https://localhost:5003"));
 
             app.UseRouting();
 
