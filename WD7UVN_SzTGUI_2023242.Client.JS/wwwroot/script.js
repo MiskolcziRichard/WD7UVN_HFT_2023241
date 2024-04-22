@@ -1,3 +1,3 @@
-﻿fetch('http://localhost:31272/customer')
-.then(x => x.json())
-.then(y => console.log(y))
+﻿fetch('https://localhost:5001/api/Customer')
+    .then(x => x.json())
+    .then(y => console.log(y));
