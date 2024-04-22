@@ -48,6 +48,12 @@ namespace WD7UVN_HFT_2023241.Endpoint
 
             app.UseHttpsRedirection();
 
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:25415"));
+
             app.UseRouting();
 
             app.UseAuthorization();
