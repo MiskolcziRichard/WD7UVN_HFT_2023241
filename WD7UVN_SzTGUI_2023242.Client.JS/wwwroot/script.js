@@ -26,20 +26,46 @@ function display()
         '</td><td>'
         + t.name +
         '</td><td>'
-        + '<button type="button" onclick="deleteCustomer(' + t.id + ')">Delete</button>' +
-        '</td></tr>';
+        + '<button type="button" onclick="deleteCustomer(' + t.id + ')">Delete</button>'
+        + '</td><td>'
+        + '<button type="button" onclick="updateCustomer(' + t.id + ')">Update</button>'
+        + '</td></tr>';
     });
+}
+
+function updateCustomer(id)
+{
+    let customerId = document.getElementById('customerid').value;
+    let customerName = document.getElementById('customername').value;
+    let customerPhone = document.getElementById('customerphone').value;
+    let customerEmail = document.getElementById('customeremail').value;
+    let customerServiceId = document.getElementById('customerserviceid').value;
+
+
+    fetch ('https://localhost:5001/api/Customer/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: 'Updated Name',
+            phone: 'Updated Phone',
+            customerEmail: 'Updated Email'
+        })
+    })
 }
 
 function addCustomer()
 {
     let customerName = document.getElementById('customername').value;
+    let customerPhone = document.getElementById('customerphone').value;
+    let customerEmail = document.getElementById('customeremail').value;
 
     fetch('https://localhost:5001/api/Customer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             name: customerName,
+            phone: customerPhone,
+            customerEmail: customerEmail
         })
     })
     .then(response => response)

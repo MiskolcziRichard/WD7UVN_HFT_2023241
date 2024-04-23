@@ -5,26 +5,85 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my first web page.</p>
+    <div class="datatable">
+        <div class="list">
+            <h1>Customers:</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="resultarea">
 
-    <div id="formdiv">
-        <input type="text" id="customername" placeholder="Customer name">
-        <button id="add" onclick="addCustomer()">Add</button>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Create new customer:</h2>
+        <div class="formdiv">
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="customername" placeholder="Customer name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="customeremail" placeholder="Email address">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="customerphone" placeholder="Phone number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="add" onclick="addCustomer()">Add</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Edit customer:</h2>
+        <div class="formdiv">
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="customerid" placeholder="Customer ID">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="customername" placeholder="Customer name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="customeremail" placeholder="Email address">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="customerphone" placeholder="Phone number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="customerserviceid" placeholder="Service ID">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="add" onclick="editCustomer()">Add</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="resultarea">
-
-        </tbody>
-    </table>
 
     <script src="script.js"></script>
 </body>
