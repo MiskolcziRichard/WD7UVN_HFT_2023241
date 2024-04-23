@@ -10,7 +10,10 @@ async function getCustomers()
         console.log(customers);
         display();
     });
-}
+}    customers.forEach(customer => {
+
+
+})
 
 function display()
 {
@@ -22,6 +25,8 @@ function display()
         + t.id +
         '</td><td>'
         + t.name +
+        '</td><td>'
+        + '<button type="button" onclick="deleteCustomer(' + t.id + ')">Delete</button>' +
         '</td></tr>';
     });
 }
@@ -33,7 +38,24 @@ function addCustomer()
     fetch('https://localhost:5001/api/Customer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: customerName })
+        body: JSON.stringify({
+            name: customerName,
+        })
+    })
+    .then(response => response)
+    .then(data =>
+    {
+        console.log("Success: ", data)
+        getCustomers();
+    })
+    .catch(error => console.error("Error: ", error));
+}
+
+function deleteCustomer(id)
+{
+    fetch('https://localhost:5001/api/Customer/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
     })
     .then(response => response)
     .then(data =>
