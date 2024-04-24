@@ -3,6 +3,8 @@ using WD7UVN_HFT_2023241.Logic;
 using System.Linq;
 using System;
 using WD7UVN_HFT_2023241.Models;
+using Microsoft.AspNetCore.SignalR;
+using WD7UVN_HFT_2023241.Endpoint.Services;
 
 namespace WD7UVN_HFT_2023241.Endpoint
 {
@@ -11,10 +13,12 @@ namespace WD7UVN_HFT_2023241.Endpoint
     public class ServiceController : ControllerBase
     {
         public ILogicServices LogicServices { get; set; }
+        IHubContext<SignalRHub> hub;
 
-        public ServiceController(ILogicServices LogicServices)
+        public ServiceController(ILogicServices LogicServices, IHubContext<SignalRHub> hub)
         {
             this.LogicServices = LogicServices;
+            this.hub = hub;
         }
 
         [HttpGet()]
@@ -43,23 +47,27 @@ namespace WD7UVN_HFT_2023241.Endpoint
             }
         }
 
-[HttpPut()]
+        [HttpPut()]
         public void PutService([FromBody] Service e)
         {
             LogicServices.CRUDOperations.CreateService(e);
+            hub.Clients.All.SendAsync("ServiceCreated", e);
         }
 
-[HttpPost()]
+        [HttpPost()]
         public void UpdateService([FromBody] Service e)
         {
             LogicServices.CRUDOperations.UpdateService(e);
+            hub.Clients.All.SendAsync("ServiceUpdated", e);
         }
 
         //HttpClient does not support sending data in the body of a DELETE request. Instead, we can send the data in the URL like with a GET request.
         [HttpDelete("{id}")]
         public void DeleteService(int id)
         {
+            Service service = LogicServices.CRUDOperations.ReadService(id);
             LogicServices.CRUDOperations.DeleteService(id);
+            hub.Clients.All.SendAsync("ServiceDeleted", service);
         }
     }
 }

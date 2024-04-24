@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WD7UVN_HFT_2023241.Endpoint.Services;
 using WD7UVN_HFT_2023241.Logic;
 using WD7UVN_HFT_2023241.Repository;
 
@@ -26,6 +27,8 @@ namespace WD7UVN_HFT_2023241.Endpoint
             services.AddTransient<ILogicServices, LogicServices>();
 			services.AddTransient<CompanyDbContext>();
 			services.AddTransient<ICRUD, CRUD>();
+
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -61,6 +64,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
 
             app.UseExceptionHandler(c => c.Run(async context =>
