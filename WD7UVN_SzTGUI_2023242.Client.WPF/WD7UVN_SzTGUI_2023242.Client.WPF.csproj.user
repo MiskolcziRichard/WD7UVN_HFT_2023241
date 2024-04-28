@@ -7,12 +7,54 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Windows\GetAllServices.xaml.cs">
+    <Compile Update="Windows\Create\CreateNewCustomer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Create\CreateNewEmployee.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Create\CreateNewMaintainerTeam.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Create\CreateNewService.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\GetAll\GetAllCustomers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\GetAll\GetAllEmployees.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\GetAll\GetAllMaintainerTeams.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\GetAll\GetAllServices.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Windows\GetAllServices.xaml">
+    <Page Update="Windows\Create\CreateNewCustomer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Create\CreateNewEmployee.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Create\CreateNewMaintainerTeam.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Create\CreateNewService.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\GetAll\GetAllCustomers.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\GetAll\GetAllEmployees.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\GetAll\GetAllMaintainerTeams.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\GetAll\GetAllServices.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

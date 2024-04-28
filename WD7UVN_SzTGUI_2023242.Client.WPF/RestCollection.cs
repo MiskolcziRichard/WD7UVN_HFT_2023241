@@ -183,7 +183,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
         public async Task DeleteAsync(int id, string endpoint)
         {
             HttpResponseMessage response =
-                await client.DeleteAsync(endpoint + "/" + id.ToString());
+                await client.DeleteAsync("api/" + endpoint + "/" + id.ToString());
 
             if (!response.IsSuccessStatusCode)
             {
