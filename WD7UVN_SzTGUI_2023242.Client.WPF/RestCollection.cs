@@ -157,7 +157,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
         public async Task PostAsync<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
-                await client.PostAsJsonAsync(endpoint, item);
+                await client.PostAsJsonAsync("api/" + endpoint, item);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -211,7 +211,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
         public async Task PutAsync<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
-                await client.PutAsJsonAsync(endpoint, item);
+                await client.PutAsJsonAsync("api/" + endpoint, item);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -357,11 +357,11 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
         {
             if (hasSignalR)
             {
-                this.rest.PostAsync(item, typeof(T).Name);
+                this.rest.PutAsync(item, typeof(T).Name);
             }
             else
             {
-                this.rest.PostAsync(item, typeof(T).Name).ContinueWith((t) =>
+                this.rest.PutAsync(item, typeof(T).Name).ContinueWith((t) =>
                 {
                     Init().ContinueWith(z =>
                     {
@@ -379,11 +379,11 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
         {
             if (hasSignalR)
             {
-                this.rest.PutAsync(item, typeof(T).Name);
+                this.rest.PostAsync(item, typeof(T).Name);
             }
             else
             {
-                this.rest.PutAsync(item, typeof(T).Name).ContinueWith((t) =>
+                this.rest.PostAsync(item, typeof(T).Name).ContinueWith((t) =>
                 {
                     Init().ContinueWith(z =>
                     {
