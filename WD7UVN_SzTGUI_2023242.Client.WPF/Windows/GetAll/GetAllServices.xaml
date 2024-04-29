@@ -16,7 +16,7 @@
             <RowDefinition Height="9*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding Services}" Grid.Row="0">
+        <ListBox ItemsSource="{Binding Services}" Grid.Row="0" SelectedItem="{Binding SelectedService}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -78,7 +78,7 @@
 
         <UniformGrid Rows="2" Grid.Row="1">
             <Button Content="Create new" Click="CreateNewService" />
-            <Button Content="Edit selected" />
+            <Button Content="Edit selected" Command="{Binding UpdateServiceCommand}"/>
         </UniformGrid>
     </Grid>
 </Window>
