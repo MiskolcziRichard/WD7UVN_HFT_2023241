@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WD7UVN_SzTGUI_2023242.Client.WPF.Windows;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF
 {
@@ -20,17 +21,20 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
 
         private void ExpandAllCustomers(object sender, RoutedEventArgs e)
         {
-
+            Window window = new GetAllCustomers();
+            window.Show();
         }
 
         private void ExpandAllEmployees(object sender, RoutedEventArgs e)
         {
-
+            Window window = new GetAllEmployees();
+            window.Show();
         }
 
         private void ExpandAllMaintainerTeams(object sender, RoutedEventArgs e)
         {
-
+            Window window = new GetAllMaintainerTeams();
+            window.Show();
         }
     }
 }

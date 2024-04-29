@@ -3,60 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WD7UVN_SzTGUI_2023242.Client.WPF.Windows"
+        xmlns:local="clr-namespace:WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels"
         mc:Ignorable="d"
         Title="Maintainer teams" Height="550" Width="350">
+
+    <Window.DataContext>
+        <local:GetAllMaintainerTeamsViewModel/>
+    </Window.DataContext>
+    
     <Grid>
-        <ListBox ItemsSource="{Binding Services}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding MaintainerTeams}" Grid.Row="0" SelectedItem="{Binding SelectedMaintainerTeam}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Gray" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="8*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="8*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Content="ID:" />
-                            <Label Grid.Row="0" Grid.Column="1" Content="{Binding ID}" />
+                                <Label Grid.Row="0" Grid.Column="0" Content="ID:" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ID}" IsReadOnly="True" Background="LightGray" />
 
-                            <Label Grid.Row="1" Grid.Column="0" Content="Name:" />
-                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding NAME}" />
-                            
-                            <Label Grid.Row="2" Grid.Column="0" Content="Version:" />
-                            <Label Grid.Row="2" Grid.Column="1" Content="{Binding VERSION}" />
+                                <Label Grid.Row="1" Grid.Column="0" Content="Name:" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NAME}" />
 
-                            <Label Grid.Row="3" Grid.Column="0" Content="Account:" />
-                            <Label Grid.Row="3" Grid.Column="1" Content="{Binding ACCOUNT}" />
+                                <Label Grid.Row="2" Grid.Column="0" Content="Email:" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding EMAIL}" />
 
-                            <Label Grid.Row="4" Grid.Column="0" Content="Domain:" />
-                            <Label Grid.Row="4" Grid.Column="1" Content="{Binding SERVICE_DOMAIN}" />
-
-                            <Label Grid.Row="5" Grid.Column="0" Content="IP address:" />
-                            <Label Grid.Row="5" Grid.Column="1" Content="{Binding IP}" />
-
-                            <Label Grid.Row="6" Grid.Column="0" Content="Port:" />
-                            <Label Grid.Row="6" Grid.Column="1" Content="{Binding PORT}" />
-
-                            <Label Grid.Row="7" Grid.Column="0" Content="Notes:" />
-                            <Label Grid.Row="7" Grid.Column="1" Content="{Binding NOTES}" />
-
-                            <Label Grid.Row="8" Grid.Column="0" Content="Maintainer Team ID:" />
-                            <Label Grid.Row="8" Grid.Column="1" Content="{Binding MAINTAINER_ID}" />
-                        </Grid>
+                                <Label Grid.Row="3" Grid.Column="0" Content="Team leader:" />
+                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding LEADER_ID}" />
+                            </Grid>
+                        </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <UniformGrid Rows="2" Grid.Row="1">
+            <Button Content="Edit selected" Command="{Binding UpdateMaintainerTeamCommand}"/>
+            <Button Content="Create new" Click="CreateNewMaintainerTeam" />
+        </UniformGrid>
     </Grid>
 </Window>

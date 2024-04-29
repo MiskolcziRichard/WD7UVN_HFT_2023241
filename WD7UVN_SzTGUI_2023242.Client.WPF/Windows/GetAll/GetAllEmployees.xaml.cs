@@ -23,5 +23,11 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.Windows
         {
             InitializeComponent();
         }
+
+        private void CreateNewEmployee(object sender, RoutedEventArgs e)
+        {
+            Window window = new CreateNewEmployee();
+            window.Show();
+        }
     }
 }
