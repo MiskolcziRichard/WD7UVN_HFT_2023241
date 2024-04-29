@@ -11,8 +11,7 @@ namespace WD7UVN_HFT_2023241.Models
         [Required]
         public string NAME { get; set; }
         public string EMAIL { get; set; }
-        [Required]
         [ForeignKey(nameof(Employee))]
-        public int LEADER_ID { get; set; }
+        public int? LEADER_ID { get; set; }
     }
 }

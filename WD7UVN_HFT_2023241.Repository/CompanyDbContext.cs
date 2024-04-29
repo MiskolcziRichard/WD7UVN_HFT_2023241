@@ -40,7 +40,7 @@ namespace WD7UVN_HFT_2023241.Repository
                 .HasOne<Service>()
                 .WithMany()
                 .HasForeignKey(customer => customer.SERVICE_ID)
-                .OnDelete(DeleteBehavior.Cascade));
+                .OnDelete(DeleteBehavior.SetNull));
 
             modelBuilder.Entity<Service>(service => service
                 .HasOne<MaintainerTeam>()
@@ -59,6 +59,12 @@ namespace WD7UVN_HFT_2023241.Repository
                 .WithMany()
                 .HasForeignKey(emp => emp.MANAGER_ID)
                 .OnDelete(DeleteBehavior.SetNull));
+
+			modelBuilder.Entity<Employee>(emp => emp
+				.HasOne<MaintainerTeam>()
+				.WithMany()
+				.HasForeignKey(emp => emp.MAINTAINER_ID)
+				.OnDelete(DeleteBehavior.SetNull));
 
             //loading test values
             modelBuilder.Entity<Customer>().HasData(

@@ -17,6 +17,6 @@ namespace WD7UVN_HFT_2023241.Models
         public string EMAIL { get; set; }
         public string PHONE { get; set; }
         [ForeignKey(nameof(Service))]
-        public int SERVICE_ID { get; set; }
+        public int? SERVICE_ID { get; set; }
     }
 }
