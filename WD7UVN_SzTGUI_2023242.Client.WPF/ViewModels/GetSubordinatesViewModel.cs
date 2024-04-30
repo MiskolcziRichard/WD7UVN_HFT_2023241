@@ -4,11 +4,10 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-using WD7UVN_SzTGUI_2023242.Client.WPF.Windows;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
 {
-    public class GetAllEmployeesViewModel : ObservableRecipient
+    public class GetSubordinatesViewModel : ObservableRecipient
     {
         public RestCollection<Employee> Employees { get; set; }
 
@@ -39,11 +38,11 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
             }
         }
 
-        public GetAllEmployeesViewModel()
+        public GetSubordinatesViewModel(Employee e)
         {
             if (!IsInDesignMode)
             {
-                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/Employee", "hub");
+                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/GetSubordinates/" + e.ID.ToString(), "hub");
 
                 UpdateEmployeeCommand = new RelayCommand(() =>
                 {
@@ -57,16 +56,6 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 DeleteEmployeeCommand = new RelayCommand(() =>
                 {
                     Employees.Delete(SelectedEmployee.ID);
-                },
-                () =>
-                {
-                    return SelectedEmployee != null;
-                });
-
-                GetSubordinatesCommand = new RelayCommand(() =>
-                {
-                    Window window = new GetSubordinates(SelectedEmployee);
-                    window.Show();
                 },
                 () =>
                 {
