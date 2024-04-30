@@ -67,6 +67,7 @@ table
     border-radius: 10px;
     border-collapse: collapse;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
 }
 
 table th, table td
@@ -78,6 +79,7 @@ table th, table td
 table th
 {
     border-top: none;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 table th:last-child, table td:last-child
