@@ -11,37 +11,43 @@
     <a href="#add" class="bookmark">Want to add a new line?</a>
     <br>
     <br>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th colspan="2">Actions</th>
-                </tr>
-            </thead>
-        </table>
-        <h2 id="add">Add a new line</h2>
-            <table class="inputs">
-                <tr>
-                    <th>ID</th>
-                     <th><input type="text"></th>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                     <th><input type="text"></th>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                     <th><input type="text"></th>
-                </tr>
-                <tr>
-                    <th>Phone</th>
-                     <th><input type="text"></th>
-                </tr>
-                <tr>
-                    <th>Service ID</th>
-                     <th><input type="text"></th>
-                </tr>
-            </table>
+    <table class="queryresults">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <h2 id="add">Add a new line</h2>
+    <table class="inputs">
+        <tr>
+            <td>ID</td>
+            <td class="inputcell"><input type="text" id="in_id"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td class="inputcell"><input type="text" id="in_name"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td class="inputcell"><input type="text" id="in_email"></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td class="inputcell"><input type="text" id="in_phone"></td>
+        </tr>
+        <tr>
+            <td>Service ID</td>
+            <td class="inputcell"><input type="text" id="in_service_id"></td>
+        </tr>
+        <tr>
+           <td colspan="2"><button onclick="addService()">Save</button></td>
+        </tr>
+    </table>
+    <div id="addresult"></div>
 </body>
 </html>
