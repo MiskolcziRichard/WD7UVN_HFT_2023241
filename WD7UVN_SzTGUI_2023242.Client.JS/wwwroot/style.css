@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body{
-    background-color: blueviolet;
+    background: linear-gradient(to left, #8a2be2, rgb(255, 51, 170));
     background-position: right top;
     background-size: cover;
     font-family: 'Roboto', sans-serif;

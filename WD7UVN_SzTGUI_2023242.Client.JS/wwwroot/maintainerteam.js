@@ -81,6 +81,8 @@ function addmaintainerteam()
         document.getElementById('addresult').innerHTML +=
         'Added maintainer team ' + maintainerteam_name + ' successfully';
 
+        getmaintainerteams();
+
     })
     .catch(error => {
         console.error("Error: ", error);
@@ -89,8 +91,6 @@ function addmaintainerteam()
         document.getElementById('addresult').innerHTML +=
         'Failed to add maintainer team ' + maintainerteam_name;
     });
-    
-    getmaintainerteams();
 }
 
 function deletemaintainerteam(id)
