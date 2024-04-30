@@ -134,7 +134,5 @@
                 <Button Content="Expand all" Click="ExpandAllEmployees"/>
             </UniformGrid>
         </Grid>
-
-
     </Grid>
 </Window>
