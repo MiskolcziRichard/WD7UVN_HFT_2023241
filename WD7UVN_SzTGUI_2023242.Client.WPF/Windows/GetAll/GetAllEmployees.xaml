@@ -75,7 +75,7 @@
         <UniformGrid Rows="2" Grid.Row="1">
             <Button Content="Edit selected" Command="{Binding UpdateEmployeeCommand}"/>
             <Button Content="Delete selected" Command="{Binding DeleteEmployeeCommand}"/>
-            <Button Content="Get subordinates"/>
+            <Button Content="Get subordinates" Command="{Binding GetSubordinatesCommand}"/>
             <Button Content="Create new" Click="CreateNewEmployee" />
         </UniformGrid>
     </Grid>
