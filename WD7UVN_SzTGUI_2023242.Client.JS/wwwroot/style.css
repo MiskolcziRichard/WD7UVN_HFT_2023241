@@ -61,8 +61,10 @@ table.inputs td:first-child{
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-table.inputs tr td:last-child{
-    background-color: rgba(0, 0, 0, 0);
+table.queryresults th,
+table.queryresults tr:last-child td,
+table.queryresults td:nth-last-child(-n+2) {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 table
