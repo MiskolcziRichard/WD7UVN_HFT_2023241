@@ -1,9 +1,8 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body{
-    background: linear-gradient(to left, #8a2be2, rgb(255, 51, 170));
-    background-position: right top;
-    background-size: cover;
+    background-image: url("./img/hatter.png");
+
     font-family: 'Roboto', sans-serif;
 }
 
@@ -44,6 +43,7 @@ a.button{
 a.button:hover{
     background: rgba(255, 255, 255, 0.25);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border: 3px solid #ff5c33;
 }
 
 a.bookmark{
@@ -58,62 +58,34 @@ table.inputs{
     width: 50%;
     text-align: right;
     margin: 50px auto;
+    margin-bottom: 20px;
+    color: white;
 }
 
 table.inputs td:first-child{
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-table.queryresults th,
-table.queryresults tr:last-child td,
-table.queryresults td:nth-last-child(-n+2) {
-    background-color: rgba(0, 0, 0, 0.1);
-}
 
-table
+table.queryresults
 {
     width: 80%;
     font-size: 20px;
     color: white;
     margin: 0 auto;
-    border-radius: 10px;
+    border-radius: 30px;
     border-collapse: collapse;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
 }
 
 table th, table td
 {
-    border: 1px solid white;
+    border: 2px solid white;
     padding: 10px;
 }
 
 table th
 {
-    border-top: none;
     background-color: rgba(0, 0, 0, 0.1);
-}
-
-table th:last-child, table td:last-child
-{
-    border-right: none;
-}
-
-table tr:last-child td
-{
-    vertical-align: middle;
-    border-bottom: none;
-    text-align: center;
-}
-
-table th:first-child, table td:first-child
-{
-    border-left: none;
-}
-
-table tr:first-child td
-{
-    border-top: none;
 }
 
 .inputcell
@@ -141,16 +113,35 @@ table td input, table button
 }
 
 button {
-    border: 2px solid #ff5c33;
+    border: 2px solid white;
     background: transparent;
     color: white;
     font-size: 16px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
     border-radius: 5px;
 }
 
 button:hover
 {
-    background: #ff5c33;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #ff5c33;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+button.save{
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 200px;
+}
+
+button.save:hover
+{
+    border: 2px solid #ff5c33;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }

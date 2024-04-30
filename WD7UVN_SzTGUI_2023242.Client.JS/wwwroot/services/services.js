@@ -28,13 +28,6 @@ function display()
         + '<button type="button" onclick="updateService(' + t.id + ')">Edit</button>'
         + '</td></tr>';
     });
-
-    document.getElementById('resultarea').innerHTML +=
-    '<tr>' +
-    '<td colspan="4">' +
-    '<a class="bookmark" href="#add">Add new</a>' +
-    '</td>' +
-    '</tr>';
 }
 
 function updateService(id)
