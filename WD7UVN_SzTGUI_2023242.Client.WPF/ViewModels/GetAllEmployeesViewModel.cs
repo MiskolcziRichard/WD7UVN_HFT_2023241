@@ -16,10 +16,18 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         public Employee SelectedEmployee
         {
             get { return selectedEmployee; }
-            set { SetProperty(ref selectedEmployee, value); (UpdateEmployeeCommand as RelayCommand).NotifyCanExecuteChanged(); }
+            set
+            {
+                SetProperty(ref selectedEmployee, value);
+                (UpdateEmployeeCommand as RelayCommand).NotifyCanExecuteChanged();
+                (DeleteEmployeeCommand as RelayCommand).NotifyCanExecuteChanged();
+                (GetSubordinatesCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         public ICommand UpdateEmployeeCommand { get; set; }
+        public ICommand DeleteEmployeeCommand { get; set; }
+        public ICommand GetSubordinatesCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -34,11 +42,20 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/Employee", "hub");
+                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/GetSubordinates", "hub");
 
                 UpdateEmployeeCommand = new RelayCommand(() =>
                 {
                     Employees.Update(SelectedEmployee);
+                },
+                () =>
+                {
+                    return SelectedEmployee != null;
+                });
+
+                DeleteEmployeeCommand = new RelayCommand(() =>
+                {
+                    Employees.Delete(SelectedEmployee.ID);
                 },
                 () =>
                 {
