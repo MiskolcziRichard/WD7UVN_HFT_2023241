@@ -14,7 +14,6 @@ h2{
 }
 
 input{
-    color: black;
     background: transparent;
     border: 2px solid white;
 }
@@ -84,14 +83,8 @@ table th, table td
 table td input
 {
     width: 100%;
-    height: 100%;
-    height: 30px;
     box-sizing: border-box;
-}
-
-.list table, .list th, .list td
-{
-    border: 1px solid white;
+    height: 30px;
 }
 
 .list table
@@ -99,16 +92,9 @@ table td input
     border-collapse: collapse;
 }
 
-.list th, .list td
-{
-    padding: 5px;
-}
-
-
-
 table button
 {
     width: 100%;
-    height: 30px;
     box-sizing: border-box;
+    height: 30px;
 }
