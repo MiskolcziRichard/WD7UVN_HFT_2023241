@@ -7,10 +7,6 @@
         mc:Ignorable="d"
         Title="Employees" Height="550" Width="350">
 
-    <Window.DataContext>
-        <local:GetSubordinatesViewModel/>
-    </Window.DataContext>
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*" />
