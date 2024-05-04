@@ -42,7 +42,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/GetSubordinates?id=" + e.ID.ToString(), "hub");
+                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/GetSubordinates?id=" + e.ID.ToString(), "hub", true);
 
                 UpdateEmployeeCommand = new RelayCommand(() =>
                 {
