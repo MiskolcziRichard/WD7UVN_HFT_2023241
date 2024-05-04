@@ -4,6 +4,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using WD7UVN_SzTGUI_2023242.Client.WPF.Windows;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
 {
@@ -16,10 +17,18 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         public Service SelectedService
         {
             get { return selectedService; }
-            set { SetProperty(ref selectedService, value); (UpdateServiceCommand as RelayCommand).NotifyCanExecuteChanged(); }
+            set
+            {
+                SetProperty(ref selectedService, value);
+                (UpdateServiceCommand as RelayCommand).NotifyCanExecuteChanged();
+                (DeleteServiceCommand as RelayCommand).NotifyCanExecuteChanged();
+                (GetResponsibleEmployeeCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         public ICommand UpdateServiceCommand { get; set; }
+        public ICommand DeleteServiceCommand { get; set; }
+        public ICommand GetResponsibleEmployeeCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -39,6 +48,25 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 UpdateServiceCommand = new RelayCommand(() =>
                 {
                     Services.Update(SelectedService);
+                },
+                () =>
+                {
+                    return SelectedService != null;
+                });
+
+                DeleteServiceCommand = new RelayCommand(() =>
+                {
+                    Services.Delete(SelectedService.ID);
+                },
+                () =>
+                {
+                    return SelectedService != null;
+                });
+
+                GetResponsibleEmployeeCommand = new RelayCommand(() =>
+                {
+                    Window window = new GetResponsibleEmployee(SelectedService);
+                    window.Show();
                 },
                 () =>
                 {

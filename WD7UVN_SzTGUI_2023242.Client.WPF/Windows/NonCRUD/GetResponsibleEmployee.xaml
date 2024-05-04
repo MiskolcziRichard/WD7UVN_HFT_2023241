@@ -1,11 +1,11 @@
-﻿<Window x:Class="WD7UVN_SzTGUI_2023242.Client.WPF.Windows.GetSubordinates"
+﻿<Window x:Class="WD7UVN_SzTGUI_2023242.Client.WPF.Windows.GetResponsibleEmployee"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels"
         mc:Ignorable="d"
-        Title="Subordinates of employee" Height="550" Width="350">
+        Title="Employee(s) responsible for service" Height="550" Width="350">
 
     <Grid>
         <ListBox ItemsSource="{Binding Employees}" Grid.Row="0">

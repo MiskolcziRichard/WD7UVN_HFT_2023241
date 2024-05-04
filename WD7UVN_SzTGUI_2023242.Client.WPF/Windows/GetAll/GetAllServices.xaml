@@ -87,6 +87,8 @@
         <UniformGrid Rows="2" Grid.Row="1">
             <Button Content="Edit selected" Command="{Binding UpdateServiceCommand}"/>
             <Button Content="Create new" Click="CreateNewService" />
+            <Button Content="Delete selected" Command="{Binding DeleteServiceCommand}"/>
+            <Button Content="Get responsible employee" Command="{Binding GetResponsibleEmployeeCommand}"/>
         </UniformGrid>
     </Grid>
 </Window>
