@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
 {
