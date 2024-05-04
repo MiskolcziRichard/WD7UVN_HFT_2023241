@@ -5,13 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels"
         mc:Ignorable="d"
-        Title="Employees" Height="550" Width="350">
+        Title="Subordinates of employee" Height="550" Width="350">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="9*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
         <ListBox ItemsSource="{Binding Employees}" Grid.Row="0" SelectedItem="{Binding SelectedEmployee}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -67,11 +63,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
-        <UniformGrid Rows="3" Grid.Row="1">
-            <Button Content="Edit selected" Command="{Binding UpdateEmployeeCommand}"/>
-            <Button Content="Delete selected" Command="{Binding DeleteEmployeeCommand}"/>
-            <Button Content="Get subordinates"/>
-        </UniformGrid>
     </Grid>
 </Window>
