@@ -4,6 +4,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using WD7UVN_SzTGUI_2023242.Client.WPF.Windows;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
 {
@@ -16,10 +17,16 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         public MaintainerTeam SelectedMaintainerTeam
         {
             get { return selectedMaintainerTeam; }
-            set { SetProperty(ref selectedMaintainerTeam, value); (UpdateMaintainerTeamCommand as RelayCommand).NotifyCanExecuteChanged(); }
+            set
+            {
+                SetProperty(ref selectedMaintainerTeam, value);
+                (UpdateMaintainerTeamCommand as RelayCommand).NotifyCanExecuteChanged();
+                (GetColleaguesCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         public ICommand UpdateMaintainerTeamCommand { get; set; }
+        public ICommand GetColleaguesCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -39,6 +46,16 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 UpdateMaintainerTeamCommand = new RelayCommand(() =>
                 {
                     MaintainerTeams.Update(SelectedMaintainerTeam);
+                },
+                () =>
+                {
+                    return SelectedMaintainerTeam != null;
+                });
+
+                GetColleaguesCommand = new RelayCommand(() =>
+                {
+                    Window window = new GetColleagues(SelectedMaintainerTeam);
+                    window.Show();
                 },
                 () =>
                 {

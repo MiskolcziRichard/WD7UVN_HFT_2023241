@@ -4,13 +4,13 @@ using WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF.Windows
 {
-    public partial class GetSubordinates : Window
+    public partial class GetColleagues : Window
     {
-        private readonly GetSubordinatesViewModel viewModel;
-        public GetSubordinates(Employee e)
+        private readonly GetColleaguesViewModel viewModel;
+        public GetColleagues(MaintainerTeam m)
         {
             InitializeComponent();
-            viewModel = new GetSubordinatesViewModel(e);
+            viewModel = new GetColleaguesViewModel(m);
             this.DataContext = viewModel;
         }
     }

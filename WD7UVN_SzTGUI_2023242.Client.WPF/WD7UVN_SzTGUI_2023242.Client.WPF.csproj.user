@@ -31,6 +31,9 @@
     <Compile Update="Windows\GetAll\GetAllServices.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\NonCRUD\GetColleagues.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\NonCRUD\GetMaintainers.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -67,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\NonCRUD\GetColleagues.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\NonCRUD\GetMaintainers.xaml">

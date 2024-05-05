@@ -5,8 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WD7UVN_SzTGUI_2023242.Client.WPF.Windows"
         mc:Ignorable="d"
-        Title="CreateNewCustomer" Height="450" Width="800">
+        Title="CreateNewCustomer" Height="550" Width="350">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                <StackPanel>
+                    <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="TextBox">
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="8*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="ID:" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewCustomer.ID}" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="Name:" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewCustomer.NAME}" />
+
+                        <Label Grid.Row="2" Grid.Column="0" Content="Email:" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewCustomer.EMAIL}" />
+
+                        <Label Grid.Row="3" Grid.Column="0" Content="Phone:" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NewCustomer.PHONE}" />
+
+                        <Label Grid.Row="4" Grid.Column="0" Content="Service:" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewCustomer.SERVICE_ID}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </ListBox>
+
+        <Button Grid.Row="1" Content="Create" Command="{Binding CreateCommand}"/>
     </Grid>
 </Window>
