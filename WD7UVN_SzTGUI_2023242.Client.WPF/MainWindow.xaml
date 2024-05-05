@@ -72,7 +72,7 @@
 
             <UniformGrid Grid.Row="1" Rows="3">
                 <Button Content="Delete selected" Command="{Binding DeleteCustomerCommand}"></Button>
-                <Button Content="Create new" Command="{Binding CreateCustomerCommand}"></Button>
+                <Button Content="Create new" Click="CreateNewCustomer"></Button>
                 <Button Content="Expand all" Click="ExpandAllCustomers"/>
             </UniformGrid>
         </Grid>
