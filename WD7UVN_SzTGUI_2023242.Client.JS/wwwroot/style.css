@@ -27,20 +27,22 @@ input:focus{
     outline: none;
 }
 
-a.button{
+.button{
     display: block;
-    margin-left: 500px;
-    margin-right: 500px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 30px 90px;
+    max-width: 30%;
     border: 3px solid white;
     border-radius: 10px;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
     color: white;
+    transition: all 0.3s ease;
 }
 
-a.button:hover{
+.button:hover{
     background: rgba(255, 255, 255, 0.25);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border: 3px solid #ff5c33;
@@ -118,6 +120,7 @@ button {
     color: white;
     font-size: 16px;
     border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
 button:hover
