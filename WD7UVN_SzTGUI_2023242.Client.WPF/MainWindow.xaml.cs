@@ -43,7 +43,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
             CreateNewCustomerViewModel viewModel = new CreateNewCustomerViewModel();
             viewModel.NewCustomerCreated += (newCustomer) =>
             {
-                var getAllCustomersViewModel = (GetAllCustomersViewModel)DataContext;
+                var getAllCustomersViewModel = (MainWindowViewModel)DataContext;
                 if (getAllCustomersViewModel != null)
                 {
                     Application.Current.Dispatcher.Invoke(() =>
