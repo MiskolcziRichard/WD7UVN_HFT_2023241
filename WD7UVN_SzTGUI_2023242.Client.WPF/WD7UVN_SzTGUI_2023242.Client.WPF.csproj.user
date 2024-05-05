@@ -37,6 +37,9 @@
     <Compile Update="Windows\NonCRUD\GetResponsibleEmployee.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\NonCRUD\GetUsers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Windows\Create\CreateNewCustomer.xaml">
@@ -70,6 +73,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\NonCRUD\GetResponsibleEmployee.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\NonCRUD\GetUsers.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

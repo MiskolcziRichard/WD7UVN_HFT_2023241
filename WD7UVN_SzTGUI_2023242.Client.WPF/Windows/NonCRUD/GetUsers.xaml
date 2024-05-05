@@ -1,0 +1,63 @@
+﻿<Window x:Class="WD7UVN_SzTGUI_2023242.Client.WPF.Windows.GetUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Users of service" Height="550" Width="350">
+
+    <Grid>
+        <ListBox ItemsSource="{Binding Clients}" Grid.Row="0">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="8*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0" Content="ID:" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ID}" IsReadOnly="True" Background="LightGray" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Content="Name:" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NAME}" />
+
+                                <Label Grid.Row="2" Grid.Column="0" Content="Email:" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding EMAIL}" />
+
+                                <Label Grid.Row="3" Grid.Column="0" Content="Phone:" />
+                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PHONE}" />
+
+                                <Label Grid.Row="4" Grid.Column="0" Content="Service ID:" />
+                                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SERVICE_ID}" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
