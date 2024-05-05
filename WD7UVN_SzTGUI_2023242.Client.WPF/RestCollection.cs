@@ -285,7 +285,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
         bool hasSignalR;
         Type type = typeof(T);
 
-        public RestCollection(string baseurl, string endpoint, string hub = null, bool nonCrud = false)
+        public RestCollection(string baseurl, string endpoint, string hub = null, bool nonCrud = false, bool expectSingle = false)
         {
             hasSignalR = hub != null;
             this.rest = new RestService(baseurl, endpoint);
@@ -325,13 +325,28 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
             }
             else 
             {
-                InitCustomEndpoint(endpoint);
+                if (expectSingle)
+                {
+                    InitCustomEndpointSingle(endpoint);
+                }
+                else
+                {
+                    InitCustomEndpoint(endpoint);
+                }
             }
         }
 
         private async Task InitCustomEndpoint(string endpoint)
         {
             items = await rest.GetAsync<T>(endpoint);
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        private async Task InitCustomEndpointSingle(string endpoint)
+        {
+            items = new List<T>();
+            T res = await rest.GetSingleAsync<T>(endpoint);
+            items.Add(res);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 

@@ -2,12 +2,12 @@
 using System.ComponentModel;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.Generic;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
 {
     public class GetResponsibleEmployeeViewModel : ObservableRecipient
     {
-        //Hiába egyetlen eredmény van, meghagyom RestCollection-nek a SignalR miatt
         public RestCollection<Employee> Employees { get; set; }
 
         public static bool IsInDesignMode
@@ -23,7 +23,7 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/WhoIsResponsibleForService?id=" + s.ID.ToString(), "hub", true);
+                Employees = new RestCollection<Employee>("http://localhost:5000/", "api/WhoIsResponsibleForService?id=" + s.ID.ToString(), "hub", true, true);
             }
         }
     }
