@@ -64,10 +64,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <UniformGrid Rows="3" Grid.Row="1">
+        <UniformGrid Rows="2" Grid.Row="1">
             <Button Content="Edit selected" Command="{Binding UpdateMaintainerTeamCommand}"/>
-            <Button Content="Create new" Click="CreateNewMaintainerTeam" />
+            <Button Content="Delete selected" Command="{Binding DeleteMaintainerTeamCommand}"/>
             <Button Content="Who works in this team" Command="{Binding GetColleaguesCommand}" />
+            <Button Content="Create new" Click="CreateNewMaintainerTeam" />
         </UniformGrid>
     </Grid>
 </Window>

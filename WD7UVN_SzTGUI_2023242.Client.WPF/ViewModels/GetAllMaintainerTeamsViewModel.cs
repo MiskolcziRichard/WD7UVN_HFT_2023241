@@ -22,11 +22,13 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 SetProperty(ref selectedMaintainerTeam, value);
                 (UpdateMaintainerTeamCommand as RelayCommand).NotifyCanExecuteChanged();
                 (GetColleaguesCommand as RelayCommand).NotifyCanExecuteChanged();
+                (DeleteMaintainerTeamCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
         public ICommand UpdateMaintainerTeamCommand { get; set; }
         public ICommand GetColleaguesCommand { get; set; }
+        public ICommand DeleteMaintainerTeamCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -46,6 +48,15 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 UpdateMaintainerTeamCommand = new RelayCommand(() =>
                 {
                     MaintainerTeams.Update(SelectedMaintainerTeam);
+                },
+                () =>
+                {
+                    return SelectedMaintainerTeam != null;
+                });
+
+                DeleteMaintainerTeamCommand = new RelayCommand(() =>
+                {
+                    MaintainerTeams.Delete(SelectedMaintainerTeam.ID);
                 },
                 () =>
                 {

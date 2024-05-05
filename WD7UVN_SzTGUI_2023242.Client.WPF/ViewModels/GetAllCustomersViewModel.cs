@@ -16,10 +16,16 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
         public Customer SelectedCustomer
         {
             get { return selectedCustomer; }
-            set { SetProperty(ref selectedCustomer, value); (UpdateCustomerCommand as RelayCommand).NotifyCanExecuteChanged(); }
+            set
+            {
+                SetProperty(ref selectedCustomer, value);
+                (UpdateCustomerCommand as RelayCommand).NotifyCanExecuteChanged();
+                (DeleteCustomerCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         public ICommand UpdateCustomerCommand { get; set; }
+        public ICommand DeleteCustomerCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -39,6 +45,15 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 UpdateCustomerCommand = new RelayCommand(() =>
                 {
                     Customers.Update(SelectedCustomer);
+                },
+                () =>
+                {
+                    return SelectedCustomer != null;
+                });
+
+                DeleteCustomerCommand = new RelayCommand(() =>
+                {
+                    Customers.Delete(SelectedCustomer.ID);
                 },
                 () =>
                 {

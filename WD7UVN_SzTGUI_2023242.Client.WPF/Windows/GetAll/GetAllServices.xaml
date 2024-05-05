@@ -86,11 +86,11 @@
 
         <UniformGrid Rows="3" Grid.Row="1">
             <Button Content="Edit selected" Command="{Binding UpdateServiceCommand}"/>
-            <Button Content="Create new" Click="CreateNewService" />
             <Button Content="Delete selected" Command="{Binding DeleteServiceCommand}"/>
             <Button Content="Get responsible employee" Command="{Binding GetResponsibleEmployeeCommand}"/>
             <Button Content="Get all maintainers" Command="{Binding GetMaintainersCommand}"/>
             <Button Content="Who uses this service" Command="{Binding GetUserCommand}"/>
+            <Button Content="Create new" Click="CreateNewService" />
         </UniformGrid>
     </Grid>
 </Window>

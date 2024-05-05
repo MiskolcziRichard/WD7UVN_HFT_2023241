@@ -13,8 +13,8 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <ListBox ItemsSource="{Binding Customers}" Grid.Row="0" SelectedItem="{Binding SelectedCustomer}">
             <ListBox.ItemContainerStyle>
@@ -68,8 +68,9 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <UniformGrid Rows="2" Grid.Row="1">
+        <UniformGrid Rows="3" Grid.Row="1">
             <Button Content="Edit selected" Command="{Binding UpdateCustomerCommand}"/>
+            <Button Content="Delete selected" Command="{Binding DeleteCustomerCommand}"/>
             <Button Content="Create new" Click="CreateNewCustomer" />
         </UniformGrid>
     </Grid>
