@@ -23,12 +23,14 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 (UpdateServiceCommand as RelayCommand).NotifyCanExecuteChanged();
                 (DeleteServiceCommand as RelayCommand).NotifyCanExecuteChanged();
                 (GetResponsibleEmployeeCommand as RelayCommand).NotifyCanExecuteChanged();
+                (GetMaintainersCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
         public ICommand UpdateServiceCommand { get; set; }
         public ICommand DeleteServiceCommand { get; set; }
         public ICommand GetResponsibleEmployeeCommand { get; set; }
+        public ICommand GetMaintainersCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -66,6 +68,16 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels
                 GetResponsibleEmployeeCommand = new RelayCommand(() =>
                 {
                     Window window = new GetResponsibleEmployee(SelectedService);
+                    window.Show();
+                },
+                () =>
+                {
+                    return SelectedService != null;
+                });
+
+                GetMaintainersCommand = new RelayCommand(() =>
+                {
+                    Window window = new GetMaintainers(SelectedService);
                     window.Show();
                 },
                 () =>

@@ -18,7 +18,7 @@ namespace WD7UVN_HFT_2023241.Endpoint
         }
 
 		[HttpGet()]
-		public IQueryable<Employee>? WhoUsesService([FromQuery] int id)
+		public IQueryable<Employee>? WhoMaintainsService([FromQuery] int id)
 		{
             try
             {
