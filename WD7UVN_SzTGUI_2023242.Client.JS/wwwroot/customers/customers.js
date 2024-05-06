@@ -30,7 +30,7 @@ function display()
     });
 
     document.getElementById('resultarea').innerHTML +=
-    '<tr>' +
+    '<tr class="addbutton">' +
     '<td colspan="4">' +
     '<button type="button" onclick="addcustomer()">Add new</button>' +
     '</td>' +
@@ -63,7 +63,7 @@ function addcustomer()
     '<td class="inputcell"><input type="text" id="in_service_id"></td>' +
     '</tr>' +
     '<tr>' +
-    '<td colspan="2"><button onclick="savecustomer(\'PUT\')">Add</button></td>' +
+    '<td colspan="2"><button onclick="savecustomer(\'PUT\')" class="addbutton">Add</button></td>' +
     '</tr>' +
     '</table>';
 }

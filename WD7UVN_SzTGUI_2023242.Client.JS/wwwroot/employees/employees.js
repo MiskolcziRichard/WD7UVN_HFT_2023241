@@ -30,7 +30,7 @@ function display()
     });
 
     document.getElementById('resultarea').innerHTML +=
-    '<tr>' +
+    '<tr class="addbutton">' +
     '<td colspan="4">' +
     '<button type="button" onclick="addemployee()">Add new</button>' +
     '</td>' +

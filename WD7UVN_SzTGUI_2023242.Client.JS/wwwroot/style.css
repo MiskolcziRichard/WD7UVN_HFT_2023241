@@ -68,6 +68,10 @@ table.inputs td:first-child{
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+tr.addbutton
+{
+    background-color: rgba(0, 0, 0, 0.1);
+}
 
 table.queryresults
 {
@@ -77,11 +81,6 @@ table.queryresults
     margin: 0 auto;
     border-radius: 30px;
     border-collapse: collapse;
-}
-
-table.queryresults tr:last-child
-{
-    background-color: rgba(0, 0, 0, 0.1);
 }
 
 table th, table td

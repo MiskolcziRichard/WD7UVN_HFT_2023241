@@ -30,7 +30,7 @@ function display()
     });
 
     document.getElementById('resultarea').innerHTML +=
-    '<tr>' +
+    '<tr class="addbutton">' +
     '<td colspan="4">' +
     '<button type="button" onclick="addteam()">Add new</button>' +
     '</td>' +
@@ -59,7 +59,7 @@ function addteam()
     '<td class="inputcell"><input type="text" id="in_leader_id"></td>' +
     '</tr>' +
     '<tr>' +
-    '<td colspan="2"><button onclick="saveteam(\'PUT\')">Add</button></td>' +
+    '<td colspan="2"><button onclick="saveteam(\'PUT\')" class="addbutton">Add</button></td>' +
     '</tr>' +
     '</table>';
 }
