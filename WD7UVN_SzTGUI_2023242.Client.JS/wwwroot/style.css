@@ -79,6 +79,11 @@ table.queryresults
     border-collapse: collapse;
 }
 
+table.queryresults tr:last-child
+{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 table th, table td
 {
     border: 2px solid white;
