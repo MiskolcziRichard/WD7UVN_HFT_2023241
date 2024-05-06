@@ -25,74 +25,125 @@ function display()
         '</td><td>'
         + '<button type="button" onclick="deletecustomer(' + t.id + ')">Delete</button>'
         + '</td><td>'
-        + '<button type="button" onclick="updatecustomer(' + t.id + ')">Edit</button>'
+        + '<button type="button" onclick="editcustomer(' + t.id + ')">Edit</button>'
         + '</td></tr>';
     });
 
 }
 
-function updatecustomer(id)
-{
-    let customer_id = document.getElementById('in_id').value;
-    let customer_name = document.getElementById('in_name').value;
-    let customer_email = document.getElementById('in_email').value;
-    let customer_phone = document.getElementById('in_phone').value;
-    let customer_service_id = document.getElementById('in_service_id').value;
-
-    fetch ('https://localhost:5001/api/Customer/' + id, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id: customer_id,
-            name: customer_name,
-            email: customer_email,
-            phone: customer_phone,
-            service_id: customer_service_id
-        })
-    })
-}
-
 function addcustomer()
 {
-    let customer_id = document.getElementById('in_id').value;
-    let customer_name = document.getElementById('in_name').value;
-    let customer_email = document.getElementById('in_email').value;
-    let customer_phone = document.getElementById('in_phone').value;
-    let customer_service_id = document.getElementById('in_service_id').value;
+    document.getElementById('forms').innerHTML = '';
+    document.getElementById('forms').innerHTML +=
+    '<table class="inputs">' +
+    '<tr>' +
+    '<td>ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_id"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Name</td>' +
+    '<td class="inputcell"><input type="text" id="in_name"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Email</td>' +
+    '<td class="inputcell"><input type="text" id="in_email"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Phone</td>' +
+    '<td class="inputcell"><input type="text" id="in_phone"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Service ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_service_id"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td colspan="2"><button onclick="savecustomer(\'PUT\')">Add</button></td>' +
+    '</tr>' +
+    '</table>';
+}
+
+function editcustomer(id)
+{
+    existing_item = customers.find(x => x.id == id);
+
+    document.getElementById('forms').innerHTML = '';
+    document.getElementById('forms').innerHTML +=
+    '<table class="inputs">' +
+    '<tr>' +
+    '<td>ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_id" readonly value="' + existing_item.id + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Name</td>' +
+    '<td class="inputcell"><input type="text" id="in_name" value="' + existing_item.name + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Email</td>' +
+    '<td class="inputcell"><input type="text" id="in_email" value="' + existing_item.email + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Phone</td>' +
+    '<td class="inputcell"><input type="text" id="in_phone" value="' + existing_item.phone + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Service ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_service_id" value="' + existing_item.servicE_ID + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td colspan="2"><button onclick="savecustomer(\'POST\')">Update</button></td>' +
+    '</tr>' +
+    '</table>';
+}
+
+function savecustomer(method)
+{
+    if (method != 'POST' && method != 'PUT')
+    {
+        console.error('Invalid method: ' + method);
+        return;
+    }
+
+    customer_id = document.getElementById('in_id').value;
+    customer_name = document.getElementById('in_name').value;
+    customer_email = document.getElementById('in_email').value;
+    customer_phone = document.getElementById('in_phone').value;
+    customer_service_id = document.getElementById('in_service_id').value;
 
     fetch('https://localhost:5001/api/Customer', {
-        method: 'PUT',
+        method: method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             id: customer_id,
             name: customer_name,
             email: customer_email,
             phone: customer_phone,
-            service_id: customer_service_id
+            servicE_ID: customer_service_id
         })
     })
     .then(response => response)
     .then(data => {
         console.log("Success: ", data)
-
-        document.getElementById('addresult').innerHTML = '';
-        document.getElementById('addresult').innerHTML +=
-        'Added customer ' + customer_name + ' successfully';
-
+    
+        document.getElementById('saveresult').innerHTML = '';
+        document.getElementById('saveresult').innerHTML +=
+        'Saved customer ' + customer_name + ' successfully';
+    
         getcustomers();
-
+    
     })
     .catch(error => {
         console.error("Error: ", error);
-
-        document.getElementById('addresult').innerHTML = '';
-        document.getElementById('addresult').innerHTML +=
-        'Failed to add customer ' + customer_name;
+    
+        document.getElementById('saveresult').innerHTML = '';
+        document.getElementById('saveresult').innerHTML +=
+        'Failed to save customer ' + customer_name;
     });
 }
 
 function deletecustomer(id)
 {
+    document.getElementById('forms').innerHTML = '';
+
     fetch('https://localhost:5001/api/Customer/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -101,6 +152,11 @@ function deletecustomer(id)
     .then(data =>
     {
         console.log("Success: ", data)
+
+        document.getElementById('saveresult').innerHTML = '';
+        document.getElementById('saveresult').innerHTML +=
+        'Deleted customer number ' + id + ' successfully';
+
         getcustomers();
     })
     .catch(error => console.error("Error: ", error));
