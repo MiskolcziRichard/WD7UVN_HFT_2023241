@@ -1,13 +1,13 @@
-let services = [];
-getServices();
+let employees = [];
+getEmployees();
 
-async function getServices()
+async function getEmployees()
 {
-    await fetch('https://localhost:5001/api/Service')
+    await fetch('https://localhost:5001/api/Employee')
     .then(x => x.json())
     .then(y => {
-        services = y;
-        console.log(services);
+        employees = y;
+        console.log(employees);
         display();
     });
 }
@@ -16,7 +16,7 @@ function display()
 {
     document.getElementById('lines').innerHTML = '';
 
-    services.forEach(t => {
+    employees.forEach(t => {
         document.getElementById('lines').innerHTML +=
         '<tr><td>'
         + t.id +
@@ -35,14 +35,14 @@ async function runQuery(id)
 
     try
     {
-        await fetch('https://localhost:5001/api/WhoUsesService?id=' + id)
+        await fetch('https://localhost:5001/api/GetSubordinates?id=' + id)
         .then(x => x.json())
         .then(y => {
             results = y;
             console.log(results);
         });
 
-        document.getElementById('resultarea').innerHTML += '<h2>Query results</h2>';
+        document.getElementById('resultarea').innerHTML += '<h2>Query results</h2>'
 
         results.forEach(t => {
             document.getElementById('resultarea').innerHTML +=
@@ -64,15 +64,18 @@ async function runQuery(id)
             '<td class="inputcell"><input type="text" id="in_phone" readonly value="' + t.phone + '"></td>' +
             '</tr>' +
             '<tr>' +
-            '<td>Service ID</td>' +
-            '<td class="inputcell"><input type="text" id="in_service_id" readonly value="' + t.service_id + '"></td>' +
+            '<td>Manager ID</td>' +
+            '<td class="inputcell"><input type="text" id="in_manager_id" readonly value="' + t.manageR_ID + '"></td>' +
             '</tr>' +
+            '<tr>' +
+            '<td>Maintainer ID</td>' +
+            '<td class="inputcell"><input type="text" id="in_maintainer_id" readonly value="' + t.maintaineR_ID + '"></td>' +
             '</table>';
         });
     }
-    catch (error)
+    catch (ex)
     {
-        console.log(error);
+        console.log(ex);
         document.getElementById('resultarea').innerHTML += '<h2>No results</h2>';
     }
 }
