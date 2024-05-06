@@ -32,7 +32,7 @@ function display()
     document.getElementById('resultarea').innerHTML +=
     '<tr>' +
     '<td colspan="4">' +
-    '<a class="bookmark" href="#add">Add new</a>' +
+    '<button type="button" onclick="addcustomer()">Add new</button>' +
     '</td>' +
     '</tr>';
 }
@@ -77,7 +77,7 @@ function editcustomer(id)
     '<table class="inputs">' +
     '<tr>' +
     '<td>ID</td>' +
-    '<td class="inputcell"><input type="text" id="in_id" readonly value="' + existing_item.id + '"></td>' +
+    '<td style="background-color: rgba(0, 0, 0, 0.1);" class="inputcell"><input type="text" id="in_id" readonly value="' + existing_item.id + '"></td>' +
     '</tr>' +
     '<tr>' +
     '<td>Name</td>' +
@@ -130,6 +130,7 @@ function savecustomer(method)
     .then(data => {
         console.log("Success: ", data)
     
+        document.getElementById('forms').innerHTML = '';
         document.getElementById('saveresult').innerHTML = '';
         document.getElementById('saveresult').innerHTML +=
         'Saved customer ' + customer_name + ' successfully';

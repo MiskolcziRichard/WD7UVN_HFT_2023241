@@ -25,78 +25,141 @@ function display()
         '</td><td>'
         + '<button type="button" onclick="deleteemployee(' + t.id + ')">Delete</button>'
         + '</td><td>'
-        + '<button type="button" onclick="updateemployee(' + t.id + ')">Edit</button>'
+        + '<button type="button" onclick="editemployee(' + t.id + ')">Edit</button>'
         + '</td></tr>';
     });
 
-}
-
-function updateemployee(id)
-{
-    let employee_id = document.getElementById('in_id').value;
-    let employee_name = document.getElementById('in_name').value;
-    let employee_email = document.getElementById('in_email').value;
-    let employee_phone = document.getElementById('in_phone').value;
-    let employee_manager_id = document.getElementById('in_manager_id').value;
-    let employee_maintainer_id = document.getElementById('in_maintainer_id').value;
-
-    fetch ('https://localhost:5001/api/Employee/' + id, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id: employee_id,
-            name: employee_name,
-            email: employee_email,
-            phone: employee_phone,
-            manager_id: employee_manager_id,
-            maintainer_id: employee_maintainer_id
-        })
-    })
+    document.getElementById('resultarea').innerHTML +=
+    '<tr>' +
+    '<td colspan="4">' +
+    '<button type="button" onclick="addemployee()">Add new</button>' +
+    '</td>' +
+    '</tr>';
 }
 
 function addemployee()
 {
-    let employee_id = document.getElementById('in_id').value;
-    let employee_name = document.getElementById('in_name').value;
-    let employee_email = document.getElementById('in_email').value;
-    let employee_phone = document.getElementById('in_phone').value;
-    let employee_manager_id = document.getElementById('in_manager_id').value;
-    let employee_maintainer_id = document.getElementById('in_maintainer_id').value;
+    document.getElementById('forms').innerHTML = '';
+    document.getElementById('forms').innerHTML +=
+    '<table class="inputs">' +
+    '<tr>' +
+    '<td>ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_id"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Name</td>' +
+    '<td class="inputcell"><input type="text" id="in_name"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Email</td>' +
+    '<td class="inputcell"><input type="text" id="in_email"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Phone</td>' +
+    '<td class="inputcell"><input type="text" id="in_phone"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Manager ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_manager_id"></td>' +
+    '</tr>' +
+    '<td>Maintainer ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_maintainer_id"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td colspan="2"><button onclick="saveemployee(\'PUT\')">Add</button></td>' +
+    '</tr>' +
+    '</table>';
+}
+
+function editemployee(id)
+{
+    existing_item = employees.find(x => x.id == id);
+
+    document.getElementById('forms').innerHTML = '';
+    document.getElementById('forms').innerHTML +=
+    '<table class="inputs">' +
+    '<tr>' +
+    '<td>ID</td>' +
+    '<td style="background-color: rgba(0, 0, 0, 0.1);" class="inputcell"><input type="text" id="in_id" readonly value="' + existing_item.id + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Name</td>' +
+    '<td class="inputcell"><input type="text" id="in_name" value="' + existing_item.name + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Email</td>' +
+    '<td class="inputcell"><input type="text" id="in_email" value="' + existing_item.email + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Phone</td>' +
+    '<td class="inputcell"><input type="text" id="in_phone" value="' + existing_item.phone + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Manager ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_manager_id" value="' + existing_item.manageR_ID + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Maintainer ID</td>' +
+    '<td class="inputcell"><input type="text" id="in_maintainer_id" value="' + existing_item.maintaineR_ID + '"></td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td colspan="2"><button onclick="saveemployee(\'POST\')">Update</button></td>' +
+    '</tr>' +
+    '</table>';
+}
+
+function saveemployee(method)
+{
+    if (method != 'POST' && method != 'PUT')
+    {
+        console.error('Invalid method: ' + method);
+        return;
+    }
+
+    employee_id = document.getElementById('in_id').value;
+    employee_name = document.getElementById('in_name').value;
+    employee_email = document.getElementById('in_email').value;
+    employee_phone = document.getElementById('in_phone').value;
+    employee_manager_id = document.getElementById('in_manager_id').value;
+    employee_maintainer_id = document.getElementById('in_maintainer_id').value;
 
     fetch('https://localhost:5001/api/Employee', {
-        method: 'PUT',
+        method: method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             id: employee_id,
             name: employee_name,
             email: employee_email,
             phone: employee_phone,
-            manager_id: employee_manager_id,
-            maintainer_id: employee_maintainer_id
+            maintaineR_ID: employee_maintainer_id,
+            manageR_ID: employee_manager_id
         })
     })
     .then(response => response)
     .then(data => {
         console.log("Success: ", data)
-
-        document.getElementById('addresult').innerHTML = '';
-        document.getElementById('addresult').innerHTML +=
-        'Added employee ' + employee_name + ' successfully';
-
+    
+        document.getElementById('forms').innerHTML = '';
+        document.getElementById('saveresult').innerHTML = '';
+        document.getElementById('saveresult').innerHTML +=
+        'Saved employee ' + employee_name + ' successfully';
+    
         getemployees();
-
+    
     })
     .catch(error => {
         console.error("Error: ", error);
-
-        document.getElementById('addresult').innerHTML = '';
-        document.getElementById('addresult').innerHTML +=
-        'Failed to add maintainer team ' + employee_name;
+    
+        document.getElementById('saveresult').innerHTML = '';
+        document.getElementById('saveresult').innerHTML +=
+        'Failed to save employee ' + employee_name;
     });
 }
 
 function deleteemployee(id)
 {
+    document.getElementById('forms').innerHTML = '';
+
     fetch('https://localhost:5001/api/Employee/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -105,6 +168,11 @@ function deleteemployee(id)
     .then(data =>
     {
         console.log("Success: ", data)
+
+        document.getElementById('saveresult').innerHTML = '';
+        document.getElementById('saveresult').innerHTML +=
+        'Deleted employee number ' + id + ' successfully';
+
         getemployees();
     })
     .catch(error => console.error("Error: ", error));
