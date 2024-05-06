@@ -21,11 +21,14 @@
         
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="7*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <ListBox Grid.Row="0" ItemsSource="{Binding Services}" SelectedItem="{Binding SelectedService}">
+            <Label Grid.Row="0" Content="Services" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding Services}" SelectedItem="{Binding SelectedService}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -41,20 +44,23 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <UniformGrid Grid.Row="1" Rows="3">
+            <UniformGrid Grid.Row="2" Rows="3">
                 <Button Content="Delete selected" Command="{Binding DeleteServiceCommand}"></Button>
-                <Button Content="Create new" Command="{Binding CreateServiceCommand}"></Button>
+                <Button Content="Create new" Click="CreateNewService"></Button>
                 <Button Content="Expand all" Click="ExpandAllServices"/>
             </UniformGrid>
         </Grid>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="7*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <ListBox Grid.Row="0" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}">
+            <Label Grid.Row="0" Content="Customers" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -70,7 +76,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <UniformGrid Grid.Row="1" Rows="3">
+            <UniformGrid Grid.Row="2" Rows="3">
                 <Button Content="Delete selected" Command="{Binding DeleteCustomerCommand}"></Button>
                 <Button Content="Create new" Click="CreateNewCustomer"></Button>
                 <Button Content="Expand all" Click="ExpandAllCustomers"/>
@@ -79,11 +85,14 @@
 
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="7*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <ListBox Grid.Row="0" ItemsSource="{Binding MaintainerTeams}" SelectedItem="{Binding SelectedMaintainerTeam}">
+            <Label Grid.Row="0" Content="Teams" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding MaintainerTeams}" SelectedItem="{Binding SelectedMaintainerTeam}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -99,20 +108,23 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <UniformGrid Grid.Row="1" Rows="3">
+            <UniformGrid Grid.Row="2" Rows="3">
                 <Button Content="Delete selected" Command="{Binding DeleteMaintainerTeamCommand}"></Button>
-                <Button Content="Create new" Command="{Binding CreateMaintainerTeamCommand}"></Button>
+                <Button Content="Create new" Click="CreateNewMaintainerTeam"></Button>
                 <Button Content="Expand all" Click="ExpandAllMaintainerTeams"/>
             </UniformGrid>
         </Grid>
 
         <Grid Grid.Column="3">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="7*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <ListBox Grid.Row="0" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
+            <Label Grid.Row="0" Content="Employees" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -128,9 +140,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <UniformGrid Grid.Row="1" Rows="3">
+            <UniformGrid Grid.Row="2" Rows="3">
                 <Button Content="Delete selected" Command="{Binding DeleteEmployeeCommand}"></Button>
-                <Button Content="Create new" Command="{Binding CreateEmployeeCommand}"></Button>
+                <Button Content="Create new" Click="CreateNewEmployee"></Button>
                 <Button Content="Expand all" Click="ExpandAllEmployees"/>
             </UniformGrid>
         </Grid>

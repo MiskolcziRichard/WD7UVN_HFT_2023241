@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WD7UVN_SzTGUI_2023242.Client.WPF.ViewModels;
 
 namespace WD7UVN_SzTGUI_2023242.Client.WPF.Windows
 {
@@ -14,7 +15,19 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF.Windows
 
         private void CreateNewEmployee(object sender, RoutedEventArgs e)
         {
-            Window window = new CreateNewEmployee();
+            CreateNewEmployeeViewModel viewModel = new CreateNewEmployeeViewModel();
+            viewModel.NewEmployeeCreated += (newEmployee) =>
+            {
+                var getAllEmployeesViewModel = (GetAllEmployeesViewModel)DataContext;
+                if (getAllEmployeesViewModel != null)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        getAllEmployeesViewModel.Employees.Add(newEmployee);
+                    }); 
+                }
+            };
+            Window window = new CreateNewEmployee(viewModel);
             window.Show();
         }
     }

@@ -55,5 +55,59 @@ namespace WD7UVN_SzTGUI_2023242.Client.WPF
             Window window = new CreateNewCustomer(viewModel);
             window.Show();
         }
+
+        private void CreateNewEmployee(object sender, RoutedEventArgs e)
+        {
+            CreateNewEmployeeViewModel viewModel = new CreateNewEmployeeViewModel();
+            viewModel.NewEmployeeCreated += (newEmployee) =>
+            {
+                var getAllEmployeesViewModel = (MainWindowViewModel)DataContext;
+                if (getAllEmployeesViewModel != null)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        getAllEmployeesViewModel.Employees.Add(newEmployee);
+                    }); 
+                }
+            };
+            Window window = new CreateNewEmployee(viewModel);
+            window.Show();
+        }
+
+        private void CreateNewMaintainerTeam(object sender, RoutedEventArgs e)
+        {
+            CreateNewMaintainerTeamViewModel viewModel = new CreateNewMaintainerTeamViewModel();
+            viewModel.NewMaintainerTeamCreated += (newMaintainerTeam) =>
+            {
+                var getAllMaintainerTeamsViewModel = (MainWindowViewModel)DataContext;
+                if (getAllMaintainerTeamsViewModel != null)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        getAllMaintainerTeamsViewModel.MaintainerTeams.Add(newMaintainerTeam);
+                    }); 
+                }
+            };
+            Window window = new CreateNewMaintainerTeam(viewModel);
+            window.Show();
+        }
+
+        private void CreateNewService(object sender, RoutedEventArgs e)
+        {
+            CreateNewServiceViewModel viewModel = new CreateNewServiceViewModel();
+            viewModel.NewServiceCreated += (newService) =>
+            {
+                var getAllServicesViewModel = (MainWindowViewModel)DataContext;
+                if (getAllServicesViewModel != null)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        getAllServicesViewModel.Services.Add(newService);
+                    }); 
+                }
+            };
+            Window window = new CreateNewService(viewModel);
+            window.Show();
+        }
     }
 }
