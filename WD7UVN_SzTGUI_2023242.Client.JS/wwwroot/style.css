@@ -100,14 +100,6 @@ table tr:last-child td:last-child {
         border-top-right-radius: 5px;
 }
 
-#resultarea tr:first-child td:first-child {
-    border-top-left-radius: 5px;
-}
-
-#resultarea tr:first-child td:last-child {
-    border-top-right-radius: 5px;
-}
-    
 table th, table td
 {
     border: 2px solid white;
