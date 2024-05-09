@@ -1,5 +1,41 @@
 let services = [];
+let connection = null;
 getservices();
+setupSignalR();
+
+function setupSignalR() {
+    connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:5001/hub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.on("ServiceCreated", (user, message) => {
+        getservices();
+    });
+
+    connection.on("ServiceDeleted", (user, message) => {
+        getservices();
+    });
+
+    connection.on("ServiceUpdated", (user, message) => {
+        getservices();
+    });
+
+    connection.onclose(async () => {
+        await start();
+    });
+    start();
+}
+
+async function start() {
+    try {
+        await connection.start();
+        console.log("SignalR Connected.");
+    } catch (err) {
+        console.log(err);
+        setTimeout(start, 5000);
+    }
+};
 
 async function getservices()
 {
@@ -14,6 +50,8 @@ async function getservices()
 
 function display()
 {
+    document.getElementById('saveresult').innerHTML = '';
+    document.getElementById('forms').innerHTML = '';
     document.getElementById('resultarea').innerHTML = '';
 
     services.forEach(t => {

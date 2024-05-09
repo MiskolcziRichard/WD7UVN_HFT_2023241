@@ -1,5 +1,41 @@
 let teams = [];
+let connection = null;
 getteams();
+setupSignalR();
+
+function setupSignalR() {
+    connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:5001/hub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.on("MaintainerTeamCreated", (user, message) => {
+        getteams();
+    });
+
+    connection.on("MaintainerTeamDeleted", (user, message) => {
+        getteams();
+    });
+
+    connection.on("MaintainerTeamUpdated", (user, message) => {
+        getteams();
+    });
+
+    connection.onclose(async () => {
+        await start();
+    });
+    start();
+}
+
+async function start() {
+    try {
+        await connection.start();
+        console.log("SignalR Connected.");
+    } catch (err) {
+        console.log(err);
+        setTimeout(start, 5000);
+    }
+};
 
 async function getteams()
 {
@@ -14,6 +50,8 @@ async function getteams()
 
 function display()
 {
+    document.getElementById('saveresult').innerHTML = '';
+    document.getElementById('forms').innerHTML = '';
     document.getElementById('resultarea').innerHTML = '';
 
     teams.forEach(t => {

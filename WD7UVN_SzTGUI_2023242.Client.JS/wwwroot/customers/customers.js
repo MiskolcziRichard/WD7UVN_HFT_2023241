@@ -1,5 +1,41 @@
 let customers = [];
+let connection = null;
 getcustomers();
+setupSignalR();
+
+function setupSignalR() {
+    connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:5001/hub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.on("CustomerCreated", (user, message) => {
+        getcustomers();
+    });
+
+    connection.on("CustomerDeleted", (user, message) => {
+        getcustomers();
+    });
+
+    connection.on("CustomerUpdated", (user, message) => {
+        getcustomers();
+    });
+
+    connection.onclose(async () => {
+        await start();
+    });
+    start();
+}
+
+async function start() {
+    try {
+        await connection.start();
+        console.log("SignalR Connected.");
+    } catch (err) {
+        console.log(err);
+        setTimeout(start, 5000);
+    }
+};
 
 async function getcustomers()
 {
@@ -14,6 +50,8 @@ async function getcustomers()
 
 function display()
 {
+    document.getElementById('saveresult').innerHTML = '';
+    document.getElementById('forms').innerHTML = '';
     document.getElementById('resultarea').innerHTML = '';
 
     customers.forEach(t => {

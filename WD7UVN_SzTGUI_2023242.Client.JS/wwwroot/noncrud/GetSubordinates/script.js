@@ -1,5 +1,54 @@
 let employees = [];
+let connection = null;
+let selectedId = null;
 getEmployees();
+setupSignalR();
+
+function setupSignalR() {
+    connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:5001/hub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.on("EmployeeCreated", (user, message) => {
+        getEmployees();
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.on("EmployeeDeleted", (user, message) => {
+        getEmployees();
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.on("EmployeeUpdated", (user, message) => {
+        getEmployees();
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.onclose(async () => {
+        await start();
+    });
+    start();
+}
+
+async function start() {
+    try {
+        await connection.start();
+        console.log("SignalR Connected.");
+    } catch (err) {
+        console.log(err);
+        setTimeout(start, 5000);
+    }
+};
 
 async function getEmployees()
 {
@@ -15,6 +64,7 @@ async function getEmployees()
 function display()
 {
     document.getElementById('lines').innerHTML = '';
+    document.getElementById('resultarea').innerHTML = '';
 
     employees.forEach(t => {
         document.getElementById('lines').innerHTML +=
@@ -30,6 +80,7 @@ function display()
 
 async function runQuery(id)
 {
+    selectedId = id;
     let results = []
     document.getElementById('resultarea').innerHTML = '';
 

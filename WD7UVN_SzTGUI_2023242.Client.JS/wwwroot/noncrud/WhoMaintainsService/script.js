@@ -1,5 +1,75 @@
 let services = [];
+let connection = null;
+let selectedId = null;
 getServices();
+setupSignalR();
+
+function setupSignalR() {
+    connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:5001/hub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.on("ServiceCreated", (user, message) => {
+        getServices();
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.on("ServiceDeleted", (user, message) => {
+        getServices();
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.on("ServiceUpdated", (user, message) => {
+        getServices();
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.on("EmployeeCreated", (user, message) => {
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.on("EmployeeUpdated", (user, message) => {
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.on("EmployeeDeleted", (user, message) => {
+        if (selectedId != null)
+        {
+            runQuery(selectedId);
+        }
+    });
+
+    connection.onclose(async () => {
+        await start();
+    });
+    start();
+}
+
+async function start() {
+    try {
+        await connection.start();
+        console.log("SignalR Connected.");
+    } catch (err) {
+        console.log(err);
+        setTimeout(start, 5000);
+    }
+};
 
 async function getServices()
 {
@@ -15,6 +85,7 @@ async function getServices()
 function display()
 {
     document.getElementById('lines').innerHTML = '';
+    document.getElementById('resultarea').innerHTML = '';
 
     services.forEach(t => {
         document.getElementById('lines').innerHTML +=
@@ -30,6 +101,7 @@ function display()
 
 async function runQuery(id)
 {
+    selectedId = id;
     let results = []
     document.getElementById('resultarea').innerHTML = '';
 
